@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.cgy</groupId>
+    <artifactId>studycode_space</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>01_java</module>
+        <module>02_scala</module>
+        <module>03_hadoop</module>
+        <module>04_hive</module>
+        <module>05_zookeeper</module>
+        <module>06_flume</module>
+        <module>07_kafka</module>
+        <module>08_hbase</module>
+        <module>09_redis</module>
+        <module>10_spark</module>
+        <module>11_azkaban</module>
+        <module>12_kylin</module>
+        <module>summer-framework</module>
+        <module>13_docker_springbootdemo</module>
+        <module>16_flink1.12</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
+</project>
