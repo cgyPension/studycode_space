@@ -1,7 +1,4 @@
-package com.base;
-
-import java.net.SocketTimeoutException;
-import java.util.Scanner;
+package com.java.base;
 
 /**
  * @author GyuanYuan Cai

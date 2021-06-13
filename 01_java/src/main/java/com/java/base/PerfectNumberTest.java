@@ -1,4 +1,4 @@
-package com.base;
+package com.java.base;
 
 /**
  * 编程找出1000以内的所有完数并打印出来。

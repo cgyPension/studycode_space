@@ -1,4 +1,4 @@
-package com.base;
+package com.java.base;
 
 /**
  * @author GyuanYuan Cai

@@ -1,4 +1,4 @@
-package com.base;
+package com.java.base;
 
 import java.util.Arrays;
 import java.util.Scanner;

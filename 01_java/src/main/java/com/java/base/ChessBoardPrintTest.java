@@ -1,4 +1,4 @@
-package com.base;
+package com.java.base;
 
 /**
  * 使用二维数组和循环实现五子棋游戏棋盘的绘制
