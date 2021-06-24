@@ -25,6 +25,9 @@ public class $02_PackClass {
         System.out.println("Integer.BYTES = " + Integer.BYTES); // 4
         System.out.println("Integer.TYPE = " + Integer.TYPE); // int
 
+        System.out.println("最大值是：" + Long.MAX_VALUE); // 2147483647
+        System.out.println("最小值是： " + Long.MIN_VALUE); // -2147483648
+
         System.out.println("------------------------------------Integer--------------------------------------");
 
         // 从int类型到integer的转换
