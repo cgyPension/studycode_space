@@ -29,6 +29,8 @@ object RedisDemo {
 
     println(client.sadd("set1", "10"))
     println(client.sadd("set1", "10"))
+    client.expire("set1", 3600 * 24 * 1); // 存set集合只能用这个设置过期时间 设为TTl时间为 1 天
+    val strings: util.Set[String] = client.smembers("set1") // 获取set集合
 
     // 4. hash
     client.hset("hash1","f1","v1")
