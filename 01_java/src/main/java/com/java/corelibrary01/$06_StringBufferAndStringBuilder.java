@@ -11,6 +11,10 @@ package com.java.corelibrary01;
  * 如: "ab".
  * StringBuffer类是从jdk1.0开始存在,属于线程安全的类,因此效率比较低。
  * StringBuilder类是从jdk1.5开始存在,属于非线程安全的类,效率比较高。
+ *
+ * 1、StringBuffer与StringBuilder中的方法和功能完全是等价的。
+ * 2、只是StringBuffer中的方法大都采用了 synchronized 关键字进行修饰，因此是线程安全的，而StringBuilder没有这个修饰，可以被认为是线程不安全的。
+ * 3、在单线程程序下，StringBuilder效率更快，因为它不需要加锁，不具备多线程安全而StringBuffer则每次都需要判断锁，效率相对更低
  */
 
 public class $06_StringBufferAndStringBuilder {
