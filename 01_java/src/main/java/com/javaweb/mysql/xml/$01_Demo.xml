@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+<users>
+    <user id="1">  &lt;!&ndash; id 为属性 &ndash;&gt;
+        <name>jane</name>
+        <age>13</age>
+    </user>
+    <user id="2">
+        <name>linyan</name>
+        <age>18</age>
+        <hobby>
+            <pingpang>
+            </pingpang>
+        </hobby>
+    </user>
+
+    <close/> &lt;!&ndash;空元素 没有开始标签&ndash;&gt;
+</users>
+-->
+
+
+<employees>
+    <employee id = "1">
+        <ename>财神</ename>
+        <age>20</age>
+        <sex>女</sex>
+        <salary>5000</salary>
+        <empdate>2021-12-12</empdate>
+    </employee>
+
+    <employee id = "2">
+        <ename>福神</ename>
+        <age>20</age>
+        <sex>女</sex>
+        <salary>5000</salary>
+        <empdate>2021-12-12</empdate>
+    </employee>
+</employees>
+
+
+        <!--
+                XML能做什么
+                1可以存储数据
+
+
+                1.XML中必须进行文档声明
+                    version版本信息
+                    encoding编码
+
+                2.xml的文档声明必须写在第一行
+
+                3.XML中的元素标签命名规则
+                1.标签定义不能使用空格或者冒号
+                2.xml标签名称 区分大小写
+
+                4.XML中有且只有一个根元素
+
+                5.元素体可以是文本或者还是一个标签
+                6．属性是元素的一部分只能出现在元素的开始标签中
+
+
+                XML解析方式：
+                DOM方式将整个XML读取到内存生成一个document对象
+                优点 元素与元素之间有结构关系可以进行CRUD
+                缺点 占用的内存太多 容易内存溢出
+
+                SAX 一边扫描一边解析 速度更快
+                优点 占用内存少速度快
+                缺点 只能进行解析操作(读)
+                            -->

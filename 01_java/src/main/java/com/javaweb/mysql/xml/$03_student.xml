@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<students xmlns="http://www.ciyo.com/employeeSchema"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://www.ciyo.com/employeeSchema student.xsd"
+>
+
+   <student number="hehe_1234">
+       <name>张三</name>
+       <age>18</age>
+       <sex>male</sex>
+   </student>
+
+    <student number="hehe_1235">
+        <name>jane</name>
+        <age>18</age>
+        <sex>male</sex>
+    </student>
+
+</students>
