@@ -13,7 +13,7 @@ import java.sql.ResultSet;
  */
 
 public class KylinDemo {
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
 
         //Kylin_URL
         String url = "jdbc:kylin://hadoop102:7070/gmall";
@@ -31,7 +31,7 @@ public class KylinDemo {
         ResultSet resultSet = ps.executeQuery();
 
         //遍历打印
-        while (resultSet.next()){
+        while (resultSet.next()) {
             System.out.println(resultSet.getInt(1));
         }
 
@@ -39,10 +39,5 @@ public class KylinDemo {
         ps.close();
         connection.close();
 
+    }
 }
-
-
-/**
- * Description:
- */
-
