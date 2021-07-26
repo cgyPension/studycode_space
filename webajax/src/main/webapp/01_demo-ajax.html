@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax</title>
+    // 引入jquery
+    <script src="jQuery类库\jquery-3.6.0.js"></script>
+    <!-- 引入css样式 -->
+    <link rel="stylesheet" type="text/css" href="$08_style.css" />
+
+    <script>
+        function send() {
+            //js的ajax访问
+            //1）创建Ajax引擎对象
+            var xmlhttp = new XMLHttpRequest();
+            //2）为Ajax引擎对象绑定监听（监听服务器已将数据响应给引擎）
+            xmlhttp.onreadystatechange = function () {//引擎状态一改变就触发该事件
+                // readystate 执行的状态1234(响应结束）
+                //status响应码200代表服务器响应成功
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    //5）接受响应数据
+                    alert(xmlhttp.responseText);
+                }
+            }
+
+            //3 绑定提交地址 
+            //get代表请求方式;url请求后台服务器的资源路径；是否为异步请求(true异步false同步)
+            xmlhttp.open("GET","webajax/DemoServlet",true);
+
+            // 发送请求
+            xmlhttp.send();
+        }
+
+    </script>
+</head>
+
+<body>
+    <button type="button" id="b1" onclick="send()">发送ajax请求</button>
+</body>
+
+
+</html>
+
+<!--
+
+
+
+-->

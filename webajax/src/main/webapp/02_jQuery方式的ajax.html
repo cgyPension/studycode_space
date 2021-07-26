@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax</title>
+    <script
+        src="D:\code\studycode_space\01_java\src\main\java\com\javaweb\FrontEndVisualization\02_jQuery+Ajax+Vue\jQuery类库\jquery-3.6.0.js"></script>
+    <script>
+        function send() {
+            // 发送ajax请求
+            /**
+             * 参数解释：
+             * url:必填参数,请求服务器的地址"
+             * data:发送给服务器的参数key-value ,服务器可以根据key值获取
+             * valuecallback: 回调函数, 当服务器响应完毕后,该函数会执行,形式参数data, 代表是服务器返回的数据
+             * type:代表服务器返回的数据类型. text文本 json
+             */
+            // $.get("/01web_war/DemoServlet","username=tom",function (data){
+            //     alert(data)
+            // },"text");
+
+            // $.post("/01web_war/DemoServlet","username=tom",function (data){
+            //     alert(data)
+            // },"text");
+
+            /**
+              url 请求的服务器端url地址
+             async (默认: true) 默认设置下，所有请求均为异步请求。如果需要发送同步请求，请将此选项设置为 false
+             data 发送到服务器的数据，可以是键值对形式，也可以是js对象形式
+             type (默认: "GET") 请求方式 ("POST" 或 "GET")， 默认为 "GET"
+             dataType 预期的返回数据的类型，取值可以是 xml, html, script, json, text, _defaul等
+             success 请求成功后的回调函数
+             error 请求失败时调用此函数
+             */
+            $.ajax({
+                url: "/AjaxDemo/ajaxServlet",
+                async: true,
+                data: "username=haohao&age=33",
+                type: "GET",
+                dataType: "text",
+                success: function (data) {
+                    alert(data);
+                },
+                error: function () {
+                    alert("数据没有成功返回!")
+                }
+            });
+
+        }
+
+    </script>
+</head>
+
+<body>
+    <button type="button" id="b1" onclick="send()">发送ajax请求</button>
+</body>
+
+
+</html>
+
+<!--
+jquery是一个优秀的js类库，自然对js原生的ajax进行了封装，封装后的ajax的操 作方法更简洁，功能更强大，与
+ajax操作相关的jquery方法有如下几种，但开发中 经常使用的有三种：
+
+GET请求 $.get(url, [data] , [callback] , [type] )
+POST请求 $.post(url, [data] , [callback] , [type] )
+AJAX请求 $.ajax([settings])
+
+
+-->
