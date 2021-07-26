@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>window location</title>
+
+    <script>
+        // window.alert("window 提示框");
+
+        // var  flag = confirm("确认框"); // 如果用户点击了确认,返回true; 如果用户点击取消,返回false;
+        // alert(flag);
+
+        // var result = prompt("输入框");
+        // alert(result);
+
+        var n1 = 100;
+        var n2 = "200";
+        var n3 = "1.11";
+
+        var sum1 = n1+parseInt(n2);
+        alert(sum1)
+
+        var sum2 = n1+parseFloat(n3);
+        alert(sum2);
+
+        function goTo(){
+            location.href="demo1.html";
+        }
+
+        function reflesh(){
+            location.reload();
+        }
+
+    </script>
+
+</head>
+<body>
+    <input type="button" value="页面跳转" onclick="goTo()"><br/>
+    <input type="button"value="重新加载页面" onclick="reflesh()">
+    <hr>
+
+    
+</body>
+</html>
+
+<!-- 
+    1,提示框: alert(提示信息);
+    2,确认框: confirm(提示信息);
+    3,输入框: prompt(提示信息);
+
+    补充:凡是window的属性和方法,window调用过程中都可以胜略不写window
+
+
+    parseInt(被转换的内容) 将字符串变为我们的number,从而完成一些运算.
+    parseFloat(被转换的内容)将字符串变为我们的number,从而完成一些运算.
+
+    location对象:记录了当前的URL信息
+    属性:href :完成一个地址的跳转
+    
+    方法:reload() ;重新加载页面,刷新
+    
+    补充:页面跳转的方式: 
+        1)超链接跳转<a href="URL地址"></a>
+        2)提交表单 form action="URL地址"
+        3) location.href="URL地址"
+
+
+
+ -->

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+    // 引入jquery
+    <script src="jQuery类库\jquery-3.6.0.js"></script>
+    <style>
+
+    </style>
+    <title>无标题文档</title>
+
+    <script type="text/javascript">
+        $(function () { // 页面加载
+            $("#btn1").click(function(){
+                //1 选取所有的表单子元素个数 :input
+                var len =$(":input").length;
+                alert(len); //22
+            })
+
+            $("#btn2").click(function(){
+                //2-选择文本框,打印文本框内容:textvar 
+                var textval = $(":text").val();
+                alert(textVal);
+            })
+
+            $("#btn3") .click(function(){//3-选择单选框,获取单选框的值 :radio :checkedvar 
+               var sex =$(":radio: checked").val();
+                alert(sex);
+            })
+
+            $("#btn4").click(function (){
+                //14-选择复选框,获取所有复选框,打印长度
+                var len = $(":checkbox").length;
+                alert(len);
+            })
+
+            $("#btn5").click(function(){
+                //5-选择复选框,获取所有复选框,获取用户勾选中的值 :checkbox :checkedvar 
+                chkArr = $(":checkbox: checked");
+                for (var i = 0; i < chkArr.length ; i++){
+                    var val =$(chkArr[i]).val();
+                    alert(val);
+                }
+            })
+
+            $("#btn6").click(function(){
+                //6-获取下拉选框选中的值 :selectedvar 
+               var selectedVal = $(":selected").val();
+                alert(selectedVal);
+            })
+
+        })
+    </script>
+</head>
+
+<body>
+    <input type="button" value="1-选取所有的表单子元素个数" id="btn1" /><br />
+    <input type="button" value="2-选择文本框,打印文本框内容" id="btn2" /><br />
+    <input type="button" value="3-选择单选框,获取单选框的值" id="btn3" /><br />
+    <input type="button" value="4-选择复选框,获取所有复选框,打印长度" id="btn4" /><br />
+    <input type="button" value="5-选择复选框,获取所有复选框,获取用户勾选中的值" id="btn5" /><br />
+    <input type="button" value="6-获取下拉选框选中的值" id="btn6" /><br />
+    <br>
+    <hr>
+    <form id="form1" action="#">
+        <input type="button" value="Button" /><br />
+        <input type="checkbox" name="c" value="ck0" />1<input type="checkbox" name="c" value="ck1" />2<input
+            type="checkbox" name="c" value="ck2" />3<br />
+        <input type="file" /><br />
+        <input type="hidden" /><br />
+        <input type="image" src="img/3.jpg" /><br />
+        <input type="password" /><br />
+        <input type="radio" name="a" value="男" />1<input type="radio" name="a" value="女" />2<br />
+        <input type="reset" /><br />
+        <input type="submit" value="提交" /><br />
+        <input type="text" /><br />
+        <select>
+            <option value="sel01">sel01</option>
+            <option value="sel02">sel02</option>
+            <option value="sel03">sel03</option>
+        </select><br />
+        <textarea rows="5" cols="20"></textarea><br />
+        <button>Button</button><br />
+    </form>
+</body>
+
+
+</html>
+
+<!--
+表单选择器
+表单选择器 :input 匹配所有 input, textarea, select 和 button 元素
+文本标签选择器 :text 匹配所有的单行文本框
+密码标签选择器 :password 匹配所有密码框
+单选标签框选择器 :radio 匹配所有单选框
+复选框选择器 :checkbox 匹配所有复选框
+提交标签选择器 :submit 匹配所有提交按钮
+图片标签选择器 :image 匹配所有图片
+重置标签选择器 :reset 匹配所有重置按钮
+按钮标签选择器 :button 匹配所有button按钮
+文件标签选择器 :file 匹配所有文件框
+隐藏域选择器 :hidden 匹配所有隐藏域标签
+
+表单对象属性选择器
+选中选择器 :checked 获得单选/复选框选中的元素
+选中选择器 :selected 获得下拉框选中的元素
+
+
+-->

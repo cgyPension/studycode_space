@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>轮播图案例</title>
+  <style>
+    #img_id {
+      width: 880px;
+    }
+    div {
+      margin-top: 150px;
+      margin-left: 250px;
+    }
+  </style>
+</head>
+
+<body>
+ <!-- 思路分析：
+  1.创建页面内容
+  创建一个div ，div中包含了3个图片css/demo.css
+  2.设置div 3个图片的样式
+  3.编写js让图片滚动起来
+  准备工作：
+  1.jpg 2.jpg 3.jpg left.png right.png
+-->
+  <div>
+    <img src="img/left.png" onclick="pre()" style="width: 70px; vertical-align: middle;margin-top: -300px;">
+    <img src="img/1.jpg" id="img_id">
+    <img src="img/right.png" onclick="next()" style="width: 70px; vertical-align: middle;margin-top: -300px">
+  </div>
+</body>
+<script>
+  //1.定义一个记录图片值的变量 count
+  var count = 1;
+  //2.编写pre()方法,切换到前一张图片
+  function pre() {
+    count--;
+    if (count <= 0) {
+      count = 3;
+    }
+    //设置图片的src属性,更变图片
+    document.getElementById("img_id").src = "./img/" + count + ".jpg";
+  }
+  //3.编写next()方法,切换到下一张图片
+  function next() {
+    count++;
+    if (count > 3) {
+      count = 1;
+    }
+    //设置图片的src属性,更变图片
+    document.getElementById("img_id").src = "./img/" + count + ".jpg";
+  }
+  //设置周期执行函数
+  window.setInterval(next, 2000);
+</script>
+
+</html>
+
+
+<!--
+
+
+-->

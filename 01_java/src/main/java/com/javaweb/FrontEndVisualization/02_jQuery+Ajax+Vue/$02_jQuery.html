@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+    // 引入jquery
+    <script src="jQuery类库\jquery-3.6.0.js"></script>
+    <style>
+        div {
+            border: 1px solid black;
+        }
+
+        p {
+            border: 1px solid gray;
+            width: 250px;
+        }
+
+        #box {
+            width: 400px;
+            height: 50;
+        }
+
+        #box1,
+        #box2 {
+            width: 400px;
+            height: 250;
+        }
+
+        div {
+            width: 300px;
+            height: 120px;
+        }
+    </style>
+    <title>无标题文档</title>
+
+    <script>
+        $(function () { // 页面加载
+            $("#btn1").click(function () {
+                // 选择第一个div元素
+                $("div:first").css("backgroud-color", "yellow");
+            })
+
+            $("#btn2").click(function () {
+                //选择最后一个p元素
+                $("p:last").css("background-color", "red");
+            })
+
+            $("#btn3").click(function () {
+                //选择索引值为偶数的div元素
+                $("div:even").css("background-color", "green");
+            })
+
+            $("#btn4").click(function () {
+                //选择索引值为奇数的div元素
+                $("div:odd").css("background-color", "orange");
+            })
+
+            $("#btn5").click(function () {
+                //选择索引值等于3的div元素
+                $("div:eq(3)").css("background-color", "pink");
+            })
+
+            $("#btn6").click(function () {
+                //选择索引值大于3的div元素
+                $("div:gt(3)").css("background-color", "gray");
+            })
+
+            $("#btn7").click(function () {
+                //选择索引值小于3的div元素
+                $("div:lt(3)").css("background-color", "blue");
+            })
+
+        })
+
+
+    </script>
+</head>
+
+<body>
+    <!-- html 部分 -->
+    <div id="box">
+        我是第一个div
+    </div>
+    <hr>
+    <div id="box1">
+        id为box1的div
+        <p>我是box1的子代 P标签</p>
+        <p>我是box1的子代 P标签</p>
+        <div class="dd" title="edu">
+            box1 子代div
+            <p>我是box1的后代 孙子P标签</p>
+            <p>我是box1的后代 孙子P标签</p>
+        </div>
+    </div>
+    <hr>
+    <p>我是body内的P标签 1</p>
+    <hr>
+    <div id="box2">
+        id为box2的div
+        <p>我是box2的子代P标签</p>
+        <p>我是box2的子代P标签</p>
+        <div class="dd" title="lagou">
+            box2 子代div
+            <p>我是box2的后代 孙子P标签</p>
+            <p>我是box2的后代 孙子P标签</p>
+        </div>
+    </div>
+    <p>我是body内的P标签 2</p>
+    <hr>
+    <input type="button" value="选择第一个div元素." id="btn1" />
+    <input type="button" value="选择最后一个p元素." id="btn2" />
+    <input type="button" value="选择索引值为偶数 的div元素." id="btn3" />
+    <input type="button" value="选择索引值为奇数 的div元素." id="btn4" />
+    <input type="button" value="选择索引值等于3的div元素." id="btn5" />
+    <input type="button" value="选择索引值大于3的div元素." id="btn6" />
+    <input type="button" value="选择索引值小于于3的div元素." id="btn7" />
+</body>
+
+
+</html>
+
+<!--
+4 基本过滤选择器
+首元素选择器 :first 获得选择的元素中的第一个元素
+尾元素选择器 :last 获得选择的元素中的最后一个元素
+偶数选择器 :even 索引为偶数，从 0 开始计数
+奇数选择器 :odd 索引奇数，从 0 开始计数
+等于索引选择器 :eq(index) 指定索引元素
+大于索引选择器 :gt(index) 大于指定索引元素
+小于索引选择器 :lt(index) 小于指定索引元素
+
+-->

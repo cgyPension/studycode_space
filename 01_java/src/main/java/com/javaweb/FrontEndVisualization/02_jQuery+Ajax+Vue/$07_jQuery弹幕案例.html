@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+    // 引入jquery
+    <script src="jQuery类库\jquery-3.6.0.js"></script>
+    <!-- 引入css样式 -->
+    <link rel="stylesheet" type="text/css" href="$08_style.css" />
+    <style>
+
+    </style>
+    <title>弹幕案例</title>
+
+    <script>
+        //需求:点击发射按钮或回车,把文本框的消息发送到页面中
+        $(function () {
+            //1.点击发射按钮,发送弹幕
+            $("#btn").click(function () {
+                //调用生成弹幕方法
+                danmu();
+            })
+
+            //2.点击回车,发送弹幕
+            $("#text").keyup(function (e) {
+                // 判断按下的是否是回车
+                if(e.keyCode ==13 ){
+                    danmu();
+                }
+            })
+        })
+
+        //3.生成弹幕
+        function danmu(){
+            //1.定义一个数,存放不同的颜色单词
+            var colors = ["red","green", "orange", "hotpink","skyblue","glod"];
+            //2,随机选中一个颜色
+            var randomColor = parseInt(Math.random()*colors.length);
+            //3.获取高度(随机高度650)
+            var randomY = parseFloat(Math.random())*650;
+            //4生一个span,代表的就是弹幕
+            var $span = $("<span></span>")
+            //4.1使用链式编程设置内容,设置文本内容
+            .text($("#text").val())
+            //4.2给弹幕设置颜色
+            .css("color",colors[randomColor])
+            //4.3设置弹幕的位置
+            .css("left",1400)
+            //4.4设置高度(弹幕的高度是随机的)   
+            .css("top",randomY)
+            //4.5设计自定义动画animate ,ispan从右向左移动,用过花费10秒,移动到最左侧消失 
+            .animate({left:-500},10000,"linear",function(){
+                $(this).remove();
+            });
+
+            //5.将生成的span添加到boxDom的div中
+            $("#boxDom").append($span); 
+        }
+
+
+    </script>
+</head>
+
+<body>
+
+    <div class="boxDom" id="boxDom">
+        <div class="idDom" id="idDom">
+            <div class="content">
+                <p class="title">弹幕:</p>
+                <input type="text" class="text" id="text" />
+                <button type="button" class="btn" id="btn">发射</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+
+</html>
+
+<!--
+
+
+
+-->

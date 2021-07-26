@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+    // 引入jquery
+    <script src="jQuery类库\jquery-3.6.0.js"></script>
+    <style>
+
+    </style>
+    <title>无标题文档</title>
+
+    <script type="text/javascript">
+        function fn1() {
+            var ht = $("p").html();
+            alert(ht); // <strong>你好啊,我来了,别跑啊</strong>
+        }
+
+        function fn2() {
+            var ht = $("p").text();
+            alert(ht); // 你好啊,我来了,别跑啊
+        }
+
+        function fn3() {
+            $("p").html("<i>内容被更换了...</i>");
+        }
+
+        function fn4() {
+            $("p").text("内容被更换了...text");
+        }
+
+        function fn5() {
+            var va = $("#btn1").val();
+            alert(va);
+        }
+
+        function fn6() {
+            $("#btn2").val("按钮内容变更...");
+        }
+
+        //7,获取当前按钮对像
+        function fn7(t) {
+            //传递的this代表的是当前input标签的dom对象.
+            //alert(t);   //bject HTMLInputElement]
+            //alert(t.value);
+            alert($(t).val());
+        }
+
+        //1.设置h1元素的属性'title
+        function fun1() {
+            //$("h1").attr("title","火一样的女子");
+            $("h1").prop("title", "冰一样的少年");
+        }
+
+        //2.获取h1元素的属性'title
+        function fun2() {
+            //var t = $("h1").attr("title");
+            var t = $("h1").prop("title");
+            alert(t);
+        }
+
+        //3·删除h1元素的属性'title
+        function fun3() {
+            $("h1").removeAttr("title");
+        }
+
+        //1.获取字体样式
+        function fx1() {
+            // css(name) 获取
+            var fontstyle = $("h2").css("font-style");
+            alert(fontStyle); //italic
+        }
+
+        //2.设置字体样式
+        function fx2() {
+            //css (name,value)
+            $("h2").css("font-style", "normal");
+        }
+
+        //3.追加class类
+        function fx3() {
+            //addclass (value)
+            $("h2").addclass("two");
+        }
+
+        //删除全部class类
+        function fx4() {
+            //删除class属性,对应的样式都会消失removeClas();
+            $("h2").removeclass();
+        }
+
+        //5·删除指定class类
+        function fx5() {
+            //removeclass(value样式值);
+            $("h2").removeclass("one");
+        }
+
+        //6,重复切换class类
+        function fx6() {
+            //toggleclass(value)
+            $("h2").toggleClass("two");
+        }
+
+        /*
+        * 1.创建2个带文本和title属性的li节点
+        * 2.获取ul父节点
+        * 3.获取第2个li节点
+        * 4.将第1个li节点添加为ul父节点的最后一个子节点
+        * 5.将第2个li节点追加为ul父节点的第一个子节点
+        * 6 最后一个元素之后添加$li_3
+        */
+        function fn() {
+            //1,创建2个带文本和title属性的1i节点 $("<A></A>")
+            var $li_1 = $("<li title='zhenji'>甄姬</li>");
+            var $li_2 = $("<li title='yuji'>虞姬</li>");
+            //2,获取u1父节点
+            var $ul = $("ul");
+            //3.获取第2个1i节点'
+            var $1i_2 = $("li:eq(1)");
+            //4.将第1个1i节点添加的u1父节点的最后一个子节点
+            //父元素.append($1i-t);
+            //$ul.append($li_1);
+            //5.将第2个1i节点追加为ui父节点的第一个子节点.
+            //父元素.prepend($li-2);
+            //$ul.prepend($1i_2);
+
+            //6最后一个元素之后添加$1i-3
+            var $li_3 = $("<li title='lvbu'>吕布</li>");
+            //兄弟元素.before(xxx)添加在兄弟之前; 兄弟元素yafter(xx)添加在兄弟元素之后.
+            $("li:last").after($li_3);
+        }
+
+        //1.清空第一个节点,但不删除节点
+        function f1() {
+            $("li:first").empty();
+        }
+
+        //2,删除第二个元素
+        function f2() {
+            $("li:eq(1)").remove();
+        }
+
+        //3.使用父节点清空所有子节点
+        function f3() {
+            $("ul").empty();
+        }
+
+    </script>
+</head>
+
+<body>
+    <input type="button" value="获取P元素的HTML代码" onclick="fn1()" />
+    <input type="button" value="获取P元素的文本" onclick="fn2()" />
+    <input type="button" value="设置P元素的HTML代码" onclick="fn3()" />
+    <input type="button" value="设置P元素的文本" onclick="fn4()" />
+    <input id="btn1" type="button" value="获取按钮的value值" onclick="fn5()" />
+    <input id="btn2" type="button" value="设置按钮的value值" onclick="fn6()" />
+    <input id="btn3" type="button" value="获取当前按钮对象" onclick="fn7(this)" />
+    <hr />
+    <p title="demo"><strong>你好啊,我来了,别跑啊</strong></p>
+    <hr>
+
+    <input type="button" value="设置h1元素的属性'title'" onclick="fun1()" />
+    <input type="button" value="获取h1元素的属性'title'" onclick="fun2()" />
+    <input type="button" value="删除h1元素的属性'title'" onclick="fun3()" />
+    <h1 title="风一样的少年"><strong>我是风一样的少年</strong></h1>
+    <hr>
+
+    <input type="button" value="获取字体样式" onclick="fx1()" />
+    <input type="button" value="设置字体样式" onclick="fx2()" />
+    <input type="button" value="追加class类" onclick="fx3()" />
+    <input type="button" value="删除全部class类" onclick="fx4()" />
+    <input type="button" value="删除指定class类" onclick="fx5()" />
+    <input type="button" value="重复切换class类" onclick="fx6()" />
+    <h2 class="one" title="你最喜欢的英雄是?">你最喜欢的英雄是?</h2>
+    <hr>
+
+    <p title="王者荣耀">你喜欢的英雄是?</p>
+    <ul>
+        <li title='zhaoyun'>赵云</li>
+        <li title='xiaoqiao'>小乔</li>
+        <li title='luban'>鲁班</li>
+    </ul>
+    <button onclick="fn()">操作</button>
+    <hr>
+
+    <button onclick="f1()">清空第一个节点,但不删除节点</button>
+    <button onclick="f2()">删除第二个元素</button>
+    <button onclick="f3()">使用父节点清空所有子节点</button>
+
+
+</body>
+
+
+</html>
+
+<!--
+jQuery对DOM树中的文本和值进行操作
+val([value]) 获得/设置元素value属性相应的值
+text([value]) 获得/设置元素的文本内容
+html([value]) 获得/设置元素的标签体内容
+
+jQuery对DOM树中的属性进行操作
+attr(name[,value]) 获得/设置属性的值
+prop(name[,value]) 获得/设置属性的值(checked，selected)
+removeAttr(name) 删除属性值
+
+
+jQuery对class进行操作 (了解)
+css(name[,value]) 获取/设置指定的CSS样式
+addClass(value) addClass(类样式名) 给指定的对象添加新的类样式，指定类样式名字即可
+removeClass(value) removeClass(类样式名) 删除指定的类样式
+toggleClass(value) toggleClass(类样式名) 切换样式，如果没有类样式，则添加，如果有类样式，则删除
+
+jQuery创建插入对象
+$(" ") 创建A元素对象
+父元素.append(element) 添加成最后一个子元素，两者之间是父子关系
+父元素.prepend(element) 添加成第一个子元素，两者之间是父子关系
+兄弟元素.before(element) 添加到当前元素的前面，两者之间是兄弟关系
+兄弟元素.aer(element) 添加到当前元素的后面，两者之间是兄弟关系
+
+jQuery删除对象
+remove() 删除指定元素
+empty() 清空指定元素的所有子元素
+
+-->

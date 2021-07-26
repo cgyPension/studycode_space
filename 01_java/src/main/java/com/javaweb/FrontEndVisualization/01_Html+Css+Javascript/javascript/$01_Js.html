@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Js案例</title>
+
+    <!-- 弹出一个警告框 -->
+    <script type="text/javascript">alert("内嵌式引入Js...")</script>
+    <!-- 取相对路径 javascript/demo.js -->
+    <script src="demo.js"></script>
+
+</head>
+<body>
+    <script type="text/javascript">
+        var un; // 没有初始化值的变量 undefined
+        alert(un);
+        alert(typeof un);
+
+        var bo = true;
+        alert(bo);
+        alert(typeof bo); // boolean
+
+        var num1=100;
+        var num2=-100;
+        var num3=10.11;
+        alert(typeof num3);
+        
+        var str= "abc";
+        var str2='cbd';
+        alert(typeof str); // string
+        alert(typeof str2); // string
+
+        // 应用类型
+        var str3 = new String("字符串内容");
+        alert(typeof str3); // object
+
+        var date = new Date();
+        alert(date); // 中国标准时间
+        alert(typeof date); // object
+
+        // 判断null类型
+        var n= null;
+        alert(n);
+        alert(typeof n);
+
+
+        var num4 = "30";
+        //alert(num1 + num3); // 10030 结论:如果有字符串数值参与加法运算,结果是字符串拼接。
+        //alert(num1- num3); // 70 结论:如果字符串的数值参与减法运算,该字符串先转成数值类型,然后做减法.
+
+        // +=如果有字符串也会拼接
+        // -=先将字符串转成数值,参与运算 
+
+        var n1 = 10;
+        var n2 = 20;
+        var s1 = "10";
+       //alert(n == n1); //true ==只比较内容不比较类型
+       //alert(n === n1) //false ===全等于,不仅判断内容是否一致,也会判断类型是否一致.
+       alert(n2 > n1);  // true 比较过程中字符串转成数值
+        
+
+       // for 循环
+    //    for(var i =1;i<=10;i++){
+    //         alert(i);
+    //    }
+
+    //    var arr = [11,22,33,44];
+    //    for(index in arr){
+    //        alert(arr[index])
+    //    }
+
+    //    for(element of arr){
+    //         alert(element);
+    //    }
+
+    //定义函数
+    // function 函数名(参数列表){
+    //     js逻辑代码
+    //     //return 返回值，若不需要返回值可以省略return
+    // }
+    // //函数调用：函数名(实际参数);
+
+    // //定义函数：
+    // function add(a,b){
+    //     alert(a+b);
+    // }
+
+    // //定义匿名函数也就是没有名字的函数
+    // function(参数列表){
+    //     js逻辑代码
+    // }
+
+    // //定义函数并赋值给变量：
+    // var fn = function(参数列表){
+    //     js逻辑代码
+    // }
+    // //调用函数：fn(实际参数);
+
+
+
+
+    </script>
+
+
+
+</body>
+</html>
+
+<!--
+Javascript是现在网络上比较流行的一种脚本语言,通过javascript可以让用户与Web站点之间增强交互。
+JavaScript可以被所有Web浏览器解析。什么是脚本语言:脚本语言叫做动态语言,它是一种解释型语言,它一般由文本编辑器编辑。
+脚本语言，一般它不能单独运行,需要嵌入到其它语言中,例如: javascript我们可以将编写的javaScript嵌入到HTML代码中,由浏览器解析执行它。
+
+应用场景
+2) javascript的应用场景数据可视化数据可视化是当下大家所推崇的一种互动展示模式,而avaScript拥有ECharts, D3.js等多种可实现数据可视化效果的框架。
+移动应用PhoneGap将WebVieW带向了移动应用,同时也将JavaScript带向了移动应用。
+
+服务端因为V8的性能将JavaScript带到了一个新的高度,于是Node.is诞生了--
+前端、后台都可以用JavaScript,现在任何一个网页都离不开JavaScript.
+VR利用3D游戏引擎,如Thre.js.游戏JavaScript也可以做出华丽的特效!
+
+3) JavaScript的组成
+ECMAScript：描述了该语言的语法、语句和基本对象。
+BOM:浏览器对象. 描述处理网页内容的方法和接口。
+DOM:Document Object Model.操作文档中的元素和内容.
+
+2 基本语法
+基本类型的定义
+1.undefined 未定义类型
+2.boolean 布尔类型
+3.number 数值类型
+4.string字符串类型
+
+二、引用类型 new对象的方式.
+
+三,关键字判断我们的变量属于哪个类型
+typeof
+alert(typeof 变量名); 
+
+四 特殊类型
+null ===> 类型是object
+
+五 注意事项
+1)js属于弱语法类型 ===> 写的时候不用特别规范也不会报错
+举例:…分号不写没事,定义变量,不写var关键字也没事
+
+2)js也属于弱数据类型, =E>我们定义变量的时候 var代表通用类型,具体的类型是根据用户赋值的时候,赋值是什么类型,该变量就是什么类型 
+
+1.算数运算符 + - * / ++ --
+2.赋值运算符 = += -= *= /=
+3.比较运算符 == === >  < >= <=
+4·逻辑运算符 && || !
+
+运算符中的boolean运算
+1,如果变量是一个undefined,直接判断该变量可以得到一个false
+2.如果变量类型是number类型. 如果是0,判断结果为false如果大于0判断结果为true
+3,如果变量类型是string类型, 空字符串,false,非空是true;
+4,如果变量是null ,判断结果是也是false
+5.如果是一个object类型,判断的结果是true 
+
+
+事件：监听html元素
+-->

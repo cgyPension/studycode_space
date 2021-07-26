@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+    // 引入jquery
+    <script src="jQuery类库\jquery-3.6.0.js"></script>
+    <script>
+        /*
+        需求:点击按钮获取input文本框中的value值,实现方式
+        1:原生的javascript实现实现方式
+        2:采用jquery方式实现
+        */
+        function getVal01() {
+            var val = document.getElementById("uid").value;
+            alert(val);
+        }
+
+        function getVal02() {
+            //$ 代表的是jQuery对象
+            //# 代表id选择器
+            //val() 获取value值的方法
+            var val = $("#uid").val();
+            alert(val);
+        }
+
+
+        // jQuery对象与DOM对象转换
+        // 方法一(常用)： [index]      
+        // var $test = $("#test"); // jQ获取到的对象
+        // var node = $test[0]; // 转成DOM对象
+        // node.innerHTML = "你好啊"; // 使用DOM对象的方法
+
+        // // 方法二： get(index)
+        // var $test = $('#test'); // jQ获取到的对象
+        // var test = $test.get(0); // 转成DOM对象
+        // test.innerHTML = "我来了"; // 使用DOM对象的方法
+
+        // // dom对象转成jQuery对象： 
+        // // 用 $() 把 DOM 对象包裹起来就是一个 jQ 对象了
+        // var test = document.getElementById("test"); // 获取的DOM对象
+        // var $test = $(test); // 转成jQ对象
+
+
+        /*
+            Js页面加载方式
+            Window.onload = function(){}
+
+            jQuery页面加载
+            $(document).ready(function(){})
+            $(function(){})
+
+            结论: javaScript的页面加载只执行一次,最后一次加载的执行; 
+            jQuery的页面加载执行多次,每次都执行
+        */
+
+
+        function fun1() {
+            alert("触发函数fun1");
+        }
+
+        $(function () { // 页面加载
+            $("#btn").click(function () {
+                alert("事件派发方式触发!!!");
+            })
+
+            $("#tn1").click(function () {
+                //1.选择body内的所有p元素
+                $("body p").css("background-color", "yellow");
+            })
+
+
+            $("#tn2").click(function () {
+                //2.在body内,选择子元素是div的
+                $("body>div").css("background-color", "lightblue");
+            })
+        })
+
+        /*
+            1
+        */
+
+        /*
+            1
+        */
+
+        /*
+            1
+        */
+    </script>
+</head>
+
+<body>
+    <input type="text" name="username" id="uid" value="jane"><br>
+    <input type="button" value="javaScript方式获取" onclick="getVal01()">
+    <input type="button" value="jQuery方式获取" onclick="getVal02()">
+    <hr>
+
+    <input type="text" name="jQuery对象与DOM对象转换" id="test" value="linyan"><br>
+    <hr>
+
+    <input type="button" value="事件绑定方式触发" onclick="fun1()">
+    <input type="button" value="事件派发方式触发" id="btn">
+    <hr>
+
+    <div id="box1">
+        id为box1的div
+        <p>我是box1的子代 P标签</p>
+        <p>我是box1的子代 P标签</p>
+        <div class="dd">
+            box1 子代div
+            <p>我是box1的后代 孙子P标签</p>
+            <p>我是box1的后代 孙子P标签</p>
+        </div>
+    </div>
+    <br />
+    <p>我是body内的P标签 1</p>
+    <br />
+    <div id="box2">
+        id为box2的div
+        <p>我是box2的子代P标签</p>
+        <p>我是box2的子代P标签</p>
+        <div class="dd">
+            box2 子代div
+            <p>我是box2的后代 孙子P标签</p>
+            <p>我是box2的后代 孙子P标签</p>
+        </div>
+    </div>
+    <p>我是body内的P标签 2</p>
+    <br />
+    <input type="button" value="选择 body内的所有p元素." id="tn1" />
+    <input type="button" value="在body内,选择子元素是div的。" id="tn2" />
+    <hr>
+
+</body>
+
+</html>
+
+<!--
+jQuery是一个iavascript库, jQuery凭借着简洁的语法和跨平台的兼容性,极大的简化了i操作DOM、处理事件、执行动画等操作。
+jQuery强调的理念是: 'write less, do more(写的少,做的多)。 
+
+jQuery中的事件与javaScript中的事件用法一样,但是名称都去掉了on.
+
+jQuery选择器
+标签选择器（元素选择器） $("html标签名") 获得所有匹配标签名称的于元素
+id选择器                $("#id的属性值") 获得与指定id属性值匹配的元素
+类选择器                $(".class的属性值") 获得与指定的class属性值匹配的元素
+
+层级选择器
+后代选择器 $("A B") 选择A元素内部的所有B元素
+子选择器 $("A>B") 选择A元素内部的所有B子元素
+
+属性选择器
+属性选择器 $("A[属性名]") 包含指定属性的选择器
+属性选择器 $("A[属性名=值]") 包含指定属性等于指定值的选择器
+
+4 基本过滤选择器
+首元素选择器 :first 获得选择的元素中的第一个元素
+尾元素选择器 :last 获得选择的元素中的最后一个元素
+偶数选择器 :even 索引为偶数，从 0 开始计数
+奇数选择器 :odd 索引奇数，从 0 开始计数
+等于索引选择器 :eq(index) 指定索引元素
+大于索引选择器 :gt(index) 大于指定索引元素
+小于索引选择器 :lt(index) 小于指定索引元素
+
+-->

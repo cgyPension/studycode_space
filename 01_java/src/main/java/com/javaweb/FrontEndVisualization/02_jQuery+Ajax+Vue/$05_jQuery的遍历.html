@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+    // 引入jquery
+    <script src="jQuery类库\jquery-3.6.0.js"></script>
+    <style>
+
+    </style>
+    <title>无标题文档</title>
+
+    <script type="text/javascript">
+        $(function () {
+            //btn派发事件
+            $("#b1").click(function () {
+                //获取所有的1i
+                var $liArr = $("li");
+                //遍历该liArr
+                for (var i = 0; i < $liArr.length; i++) {
+                    //每次遍历到的结果是一个dom对象
+                    var city = $($liArr[i]).html();
+                    alert(city);
+                }
+            })
+
+            $("#b2").click(function () {
+                $("1i").each(function (index, element) {
+                    //alert("index="+index +", element = "+element);
+                    var lival = $(element).html();
+                    alert(lival);
+                })
+            })
+
+
+            // 1/需求:点击按钮,遍历打印1i中的文本值.
+            // 遍历格式: 
+            $("#b3").click(function () {
+                //循环
+                $.each($("1i"), function (index, element) {
+                    //alert("index = "+index +" , element = "+element);
+                    alert($(element).html());
+                })
+            })
+
+
+            $("#b4").click(function () {
+                for (element of $("1i")) {
+                    //alert(element);
+                    alert($(element).html());
+                }  
+            })
+        })
+
+    </script>
+</head>
+
+<body>
+    <ul id="city">
+        <li>北京</li>
+        <li>上海</li>
+        <li>天津</li>
+        <li>重庆</li>
+    </ul>
+    <input type="button" value="遍历方式1" id="b1">
+    <input type="button" value="遍历方式2" id="b2">
+    <input type="button" value="遍历方式1" id="b3">
+    <input type="button" value="遍历方式2" id="b4">
+
+
+</body>
+
+
+</html>
+
+<!--
+第三种方式
+$.each(被遍历的jquery对象, function(index, element)({})
+
+-->

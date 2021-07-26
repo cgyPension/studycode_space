@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>div+css</title>
+
+    <style>
+        /* 修饰h2标签  设置字体颜色和大小 内部样式*/
+        h2{
+            color: brown;
+            font-size: 20px;
+            font-family: 楷体;
+        }
+        #div2{
+            width:100px; 
+            height:100px; 
+            background-color:rgb(15, 216, 149);
+        }
+
+        div{
+            width:100px; 
+            height:100px; 
+            background-color:rgb(236, 36, 113);
+        }
+        .mystytle{
+            width:100px; 
+            height:100px; 
+            background-color:rgb(115, 17, 228);
+        }
+
+         div p{
+            border: 1px solid black;
+            background-color: rgb(240, 220, 224);
+        } 
+
+        
+        #p1 {
+            border-style:dotted;
+            border-width:1px;
+            border-color:red;
+        }
+
+        #p2 {
+            border-style:dashed;
+            border-width:2px;
+            border-color:blue;
+        }
+
+        #p3 {
+            border-style:solid;
+            border-width:3px;
+            border-color:yellow;
+        }
+
+        #p4 {
+            border-style:double;
+            border-width:4px;
+            border-color:pink;
+        }
+
+        #p5 {
+            border:1px solid greenyellow;
+            width:30%;
+            height: 200px;
+            background-image: url(img/2.jpg);
+        }
+
+        #div7{
+            width:50px; 
+            height:50px; 
+            border: 1px solid black;
+            background-color: rgb(240, 220, 224);
+        }
+
+        #div8{
+            width:50px; 
+            height:50px; 
+            border: 1px solid black;
+            background-color: rgb(20, 196, 219);
+            float: left;
+            clear: left;
+        }
+
+        #div9{
+            width:50px; 
+            height:50px; 
+            border: 1px solid black;
+            background-color: rgb(94, 8, 25);
+            float: left;
+        }
+
+
+    </style>
+    <!-- 外部式 引入div3.css-->
+    <link rel="stylesheet" href="css/div3.css"> 
+
+
+</head>
+<body>
+    <div style="background-color: aqua;">div1</div>
+    <div style="background-color: rgb(73, 214, 80);">div2</div>
+
+    <span style="background-color: yellow;">span1~~~~</span>
+    <span style="background-color: blueviolet;">span2</span>
+
+    <h2>cssr入门案例</h2>
+
+    <div style="width:100px; height:100px; background-color:aquamarine;">行内式</div>
+    <div id="div2">内部式 id选择器</div>
+    <div id="div3">外部式</div>
+
+    <div>标签选择器</div>
+    <div class="mystytle">类选择器</div>
+    <div>666
+        <p>666派生选择器中的p元素</p>
+    </div>
+    <p>最下面的p元素</p>
+    <div>标签选择器</div>
+
+    <p id="p1">点状线条</p>
+    <p id="p2">虚线</p>
+    <p id="p3">单实线</p>
+    <p id="p4">双实线</p>
+    <p id="p5">头标签 简化写法</p>
+
+    <div id="div4" style="display: inline;background-color: rgb(73, 214, 80);">div4</div>
+    <span id="span3" style="display:block;background-color: yellow;">span3~~~~</span>
+    <div id="div5" style="display: none;background-color: rgb(73, 214, 80);">div5</div>
+    <div id="div6" style="visibility: hidden;">div6</div>
+
+    <hr>
+    <div id="div7">浮动1</div>
+    <div id="div8">浮动2</div>
+    <div id="div9">浮动3</div>
+
+    <div id="div10" style="margin-top: 100px;margin-left: 200px;border-top:8px solid blue;padding-top: 60px;">盒子模型1</div>
+    <div id="div11" style="margin:100px 200px 150px 50px;border: 4px solid blue;padding: 60px;">盒子模型2</div>
+
+</body>
+</html>
+
+
+
+<!-- 
+    todo div
+    块标签: 可以将我们的网页划分成多个块,进行布局.,
+    分类:
+    行级元素: div     特点:div标签独占一行,如果有多个div标签,多行显示.
+    行内元素: span    特点: span标签,多个元素也会在一行展示. 
+
+    使用场景:
+    div页面布局
+    span页面布局,消息提示框
+
+    todo css
+    css的入门案例h2标签,里面添加内容,使用css修饰h2标签,设置字体颜色及字体大小.
+    
+    思考问题:1.css写在哪里?写在head标签中,设置一个style标签中.
+    
+    2.css如何编写?
+    先编写选择器 {属性名1:属性值1 ;属性名2:属性值2;}
+
+    注意事项：
+    优先级问题：
+    id选择器 > 类选择器 > 标签选择器
+
+    边框就是给html选中的元素设置边线
+    属性:border-style :设置线条的样式(dotted点状线条; dashed虚线; solid单实线; double双实线)
+    border-width :设置线条的粗细(10px ; 20px)
+    border-color :设置线条颜色
+    
+    简写版:border: 1px solid red;(推荐)
+
+     display转换
+     1)将我们的行级元素转换为行内元素. div==>span取值: inline
+     2)将我们的行内元素转换成行级元素 span==>div取值: block
+     3)将指定的元素消失取值: none 
+     补充:visibility : hidden 效果是隐藏元素,位置不消失。
+
+     color:颜色,字体颜色
+     font-size:字体的大小,像素px
+     扩展:了解
+     font-family:字体,幼圆,宋体,楷体...
+     text-decoration: none取消文字上的下划线 
+
+     background-color:设置背景色
+     background-image:ur1 (背景图片的连接)
+
+     选择器(float:属性值;}
+     常用属性值:left :元素向左浮动
+     right :元素向右浮动none :元素不浮动(默认值)
+
+     (Clear:属性值;}常用属性值
+     left :不允许左侧有浮动元素(清除左侧浮动的影响)
+     right:不允许右侧有浮动元素(清除右侧浮动的影响
+     both :同时清除左右两侧浮动的影响 
+
+     创建div,使用盒子模型设置外边距、边框、内边距。
+     直接在浏览器 F12 Elements 盒子模型里编辑 会临时直接反映在网页源码里
+
+ -->

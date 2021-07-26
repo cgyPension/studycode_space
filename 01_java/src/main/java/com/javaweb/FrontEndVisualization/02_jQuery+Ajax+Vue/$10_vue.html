@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+    <!-- 引入jquery -->
+    <script src="jQuery类库\jquery-3.6.0.js"></script> 
+    <!-- 引入vue v2.x 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> 
+    <style>
+
+    </style>
+    <title>vue入门</title>
+
+
+</head>
+
+<body>
+
+    <div id="app">
+        <!-- 3. 使用插值表达式渲染htmli 
+        问题：
+        1,插值表达式的作用. :使用vue中的数据来替代html中的内容.
+        2,插值表达式能写哪些内容:除了能够编写data中的数据,还可以编写一些数学运算.
+        3·插值表达式能否写语句: 插值表达式中不能写语句,能够写三元运算符
+        4·插值表达式的作用范围: 一定是vue对象接管的范围内,超出范围不会生效,不会被解析.
+        -->
+        {{message}}
+        {{3+3}}
+        {{ true ? 'YES' : 'NO' }}
+    </div>
+        
+    <div id="app2" class="cls">
+        {{message}} <br>
+        {{num}}
+        {{person}}
+        {{person.name}} <br>
+        {{date.getFullYear()}} <br>
+        {{flag}} <br>
+        {{arr[1]}} <br>
+    </div>
+
+    <div id="app3">
+        <p>{{message}}，p标签中元素原始内容</p> <br>
+        <!-- 采用 v-tex展示数据 
+            v-text和插值表达式的区别:
+            1, v-text替换标签体中所有内容; 插值表达式只替换部分内容
+            2, v-text补充新的内容是",连接,插值表达式""+连接内容
+
+        -->        
+        <p v-text="message">p标签中元素原始内容</p>
+        <p v-html="url">p标签中元素原始内容1</p> <!-- 超链接解析成功  -->
+        <p v-text="url">p标签中元素原始内容2</p> <!-- 超链接解析不成功  -->
+    </div>
+
+    
+    <div id="app4">
+        <!--  
+            v-if是将元素从dom树中移除
+            v-show是将元素设置属性隐藏
+
+        -->
+        <p v-if="flag">第一个p</p>
+        <p v-show="flag">第二个p</p>
+    </div>
+
+    <div id="app5">
+        <!--  
+
+
+        -->
+      <button>按钮1</button>
+      <button>按钮1</button>
+    </div>
+
+</body>
+<!-- 2.创建vue对象,设置e1属性和data属性 
+    EL1载点的注意事项:
+    1,是否能够选择其他的选择器:可以使用其他选择器,一次选择多个元素的选择器,插值表达式只有第一个被解析
+    2.EL挂载点选中的元素,它的子元素是否也能够使用插值表达式: 被选中元素的子元素也可以使用插值表达式
+    3.html元素和body元素,最好不要被vue对象接管. 如果是用使用e1命中body和htm1插值表达式不会被解析.
+
+    data中的数据可以是哪些?
+    1.字符串
+    2.数值型内容
+    3.对象类型
+    4．布尔类型
+    5.数组类型
+ -->
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: "hello Vue !!"
+        }
+    })
+    var app2 = new Vue({
+        el: '.cls',
+        data: {
+
+            message: "hello cls !!",
+            num:12,
+            person:{"name":"jane","age":18},
+            date:new Date(),
+            flag:false,
+            ar:["aa","bb",true,13]
+        }
+    })
+
+    var app3 = new Vue({
+        el: '#app3',
+        data: {
+            url:"<a href='http://www.baidu.com'>跳转到百度</a>"
+        }
+    })
+
+    var app4 = new Vue({
+        el: '#app4',
+        data: {
+            flag:false
+        }
+    })
+
+    var app5 = new Vue({
+        el: '#app4',
+        data: {
+            flag:false
+        }
+    })
+</script>
+
+
+</html>
+
+<!--
+todo
+Vue (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的渐进式框架
+VUE的特点:
+1.JavaScript框架 2.简化DOM操作 3.响应式数据驱动
+
+MVVM模式
+MVVM是Model-View-ViewModel的简写。它本质上就是MVC 的改进版。
+MVVM 就是将其中的View 的状态和行为抽象化，让我们将视图 UI 和业务逻辑分开MVVM模式和MVC模式一样，主要
+目的是分离视图（View）和模型（Model）Vue.js 是一个提供了 MVVM 风格的双向数据绑定的 Javascript 库，专注于
+View 层。它的核心是 MVVM 中的 VM，也就是 ViewModel。 ViewModel负责连接 View 和 Model，保证视图和数据的
+一致性，这种轻量级的架构让前端开发更加高效、便捷。MVVM拆分解释为：
+Model: 负责数据存储
+View: 负责页面展示
+View Model: 负责业务逻辑处理（比如Ajax请求等），对数据进行加工后交给视图展示
+
+todo 指令
+指令是指v-开头，作用于html标签，提供一些特殊的特性，当指令被绑定到html元素的时候，指令会为被绑定
+的元素添加一些特殊的行为，可以将指令看成html的一种属性
+解释：指令 (Directives) 是带有 v- 前缀的特殊属性
+作用：当表达式的值改变时，将其产生的连带影响，响应式地作用于 DOM
+1. Vue框架提供的语法
+2. 扩展了HTML的能
+
+
+v-text:更新标签中的内容
+v-text和插值表达式的区别v-text 更新整个标签中的内容
+插值表达式: 更新标签中局部的内容
+v-html:更新标签中的内容/标签
+可以渲染内容中的HTML标签
+注意:尽量避免使用，容易造成危险 (XSS跨站脚本攻击)
+
+-->

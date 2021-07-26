@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.标题标题</title>
+</head>
+
+<body>
+    <!-- 一个标题占一行 字号依次递减 -->
+    <h1>一级标题</h1>
+    <p>&nbsp;&nbsp;&nbsp;友：我发现软萌的女生打字都喜欢用“捏” 我：比如？ 友：“大家在干什么捏”“今天吃什么捏”</p>
+    <hr> <!-- 分割线 -->
+    <br>我：懂了 我也经常用“捏” <br />友：比如？我：“捏吗的”“捏吗笑不活” ​​​​</p>
+    <h2>二级标题</h2>
+    <h3>三级标题</h3>
+    <h4 id="锚点1">四级标题</h4>
+    <h5>五级标题</h5>
+    <h6>六级标题</h6>
+    <!-- 
+    字体标签
+    1属性size设置字体的大小, size的取值1-7px
+    2 属性color设置字体的颜色
+      1)color="颜色的单词"
+      2)color="#0-F"  
+      3)style="color:rgb(0,0, 255)"
+ -->
+    <font size="2px" color="green">字体标签1</font>
+    <font size="3px" color="#0000FF">字体标签2</font>
+    <font size="6px" style="color:rgb(0,200, 255)">字体标签3</font><br>
+
+    <strong>加粗标签</strong><br>
+    <b>加粗标签2</b><br>
+
+    <em>倾斜标签</em><br>
+    <i>倾斜标签2</i><br>
+
+    <del>删除线标签</del><br>
+    <s>删除线标签2</s><br>
+
+    <ins>下滑线标签</ins><br>
+    <u>下划线标签2</u><br>
+
+    <strong><em><u>加粗倾斜下划线</u></em></strong><br>
+
+    <!-- 1.将img目录下的3.png引入到本页面中展示-->
+    <img src="img/2.jpg" alt="图片无法显示的内容" title="图片文字" width="200px">
+    <!--2.将远程的URL中的图片引入到我们的网页-->
+    <img src="img/1.gif" alt="图片无法显示的内容" title="图片文字" width="20%">
+
+    <!-- 有序列表标签 -->
+    <ol type="1">
+        <li type="a">中国</li>
+        <li>加拿大</li>
+        <li>日本</li>
+        <li>墨尔本</li>
+        <li>韩国</li>
+    </ol>
+    <hr>
+    <!-- 无序列表标签 -->
+    <ul type="square">
+        <li><a href="#锚点1">佛山</a></li>
+        <li>广州</li>
+        <li>深圳</li>
+    </ul>
+
+    <a href="https://www.bilibili.com">本页面超链接跳转B站</a>
+    <a href="https://www.bilibili.com" target="_blank">新窗口超链接跳转B站</a>
+    <!-- 可以采取图片跳转 -->
+    <a href="https://www.bilibili.com" target="_blank"><img src="img/1.gif" alt="图片无法显示的内容" title="图片文字"
+                                                            width="20%"></a>
+
+    <a href="#">空链接</a>
+    <a href="source/2.zip">下载链接</a>
+    <a href="img/2.jpg">网页的其他元素网页直接打开</a>
+    <hr>
+    <!-- 锚点链接 -->
+    <!-- 表标签 
+    1·设置table的常用属性
+    1)border设置table的边框
+    2)width 设置表格的宽度 (像素单位, 百分比单位)
+    3)height设置高度
+    4)align 设置表格的位置(left默认值 center居中 right居右)
+    5)bgcolor设置背景颜色
+    6) background设置背景图片
+    
+    补充: th与td的区别: th中的内容会加粗居中, td默认是居左,不加粗
+    
+    2,设置tr的属性
+    1)align 设置内容的位置(left默认值 center居中 right居右)
+    2)bgcolor设置背景颜色
+
+    行合并：4和7 rowspan="2"
+    列合并：8和9 colspan="2"
+    
+    三行三列
+    -->
+    <table border="1px" width="40%" height="200px" align="center" bgcolor="skyblue" cellspacing="0px">
+        <tr bgcolor="coral">
+            <th>表头1</th>
+            <th>表头2</th>
+            <th>表头3</th>
+        </tr>
+        <tr>
+            <th rowspan="2">数据4</th>
+            <th>数据5</th>
+            <th>数据6</th>
+        </tr>
+        <tr>
+            <td colspan="2">数据8</td>
+        </tr>
+    </table>
+
+    <hr>
+    <!-- 表单
+    1.编写页面展示出一个表单的样式
+    1)form总标签
+    2)编写其他控件
+    
+    2·设置表单控件的属性
+    1)form action="URL地址" method="get/post" 提交表单的方式 name=""
+    2) input type="text" ,必要属性name 
+    3)input type="password" ,必要属性name
+    4)input type="radio" ,必要属性name,要注意的是并且name属性的值必须一致 ;
+    value提交到后合的数据
+    5) select 常用属性必要属性name ; option: value
+    6)input type="file" 必属tname
+    7)input type="checkbox" 必要属性name; value=""具体传递到后台的值;checked="true/checked" checked代表默认选中;
+    8)textarea文本域, cols="数值"该文本域占多少列 rows="数值"占多少行
+    9)input type="image" 必要属性name ; src引入图片地址
+    10) input types"hidden" 一般不需要用户操作,我们还想给后合传递数据,用隐藏域. name必要属性 value=""传递的数据
+    11) input type="submit" 如果type为submit,该按钮有提交表单的功能. value=""
+    12)input type="button value属性,按钮的名称
+
+    补充:
+    value:就是给组件设置对应的值,效果和用户输入或选中是一样的
+    display该组件不能操作
+    readOnly="readOnly" 设置输入框为只读,不能写操作
+    下拉框的特殊属性: multiple="multiple" 下拉选中多个 
+
+    
+    3,提交表单get/post,参数传递前提条件: 1) <form actions"https://www.baidu.com"表单的数据提交到哪里去. 2)必须要有组件,组件不能是disabled的 3)必须有提交按钮<input type="submit" value="提交按钮">
+
+    GET :默认值。提交的数据追加在请求路径上。例如: /1.html?username-jack&password-1234 ,数据格式kN ,追加是使用?连接,之后每一对数据使用&连接0因请求路长度有R,F有GET请求提交的数据有限。0敏感数据会在地址栏显示,不适合做密码等数据提交
+    POST:。提交的数据不再请求路径上追加(及不显示在地址栏上)0提交的数据大小不显示
+
+    
+    -->
+    <!-- <form action="http://www.baidu.com" method="GET" name="myForm"> -->
+    <form action="index.html" method="POST" name="myForm"></form>
+    用户名<input type="text" name="username"><br>
+    密码<input type="password" name="password"><br>
+    姓别<input type="radio" name="sex" checked value="male">男 <input type="radio" value="female">女 <br>
+    地址
+    <select name="city" id="">
+        <option value="foshan">佛山</option>
+        <option value="guangzhou">广州</option>
+        <option value="shenzheng">深圳</option>
+    </select><br>
+    头像<input type="file" name="photo"><br>
+    兴趣<input type="checkbox" name="hobby" value="kanshu">看书 <input type="checkbox" name="hobby" value="biancheng">编程
+    <input type="checkbox" name="hobby" value="dianying"> <br>
+    简介<textarea cols="20" rows="10" name="jianjie"></textarea><br>
+    图片<input type="image" src="img/2.jpg" width="250px"><br>
+    隐藏域<input type="hidden" name="myhidden" value="我要传递隐藏值"><br>
+
+    <input type="submit" value="提交按钮">
+    <input type="reset" value="重置">
+    <input type="button" value="普通按钮">
+    </form>
+
+    <hr>
+    <!-- 表格嵌套表单练习 -->
+    <form action="index.html" method="get">
+        <table border="1px" width="50%" height="600px" align="center" cellspacing="0">
+            <tr align="center">
+                <td>用户名</td>
+                <td>
+                    <input type="text" name="username" />
+                    <input type="hidden" name="id" value="1" />
+                </td>
+            </tr>
+            <tr align="center">
+                <td>密码</td>
+                <td><input type="password" name="password" /></td>
+            </tr>
+            <tr align="center">
+                <td>性别</td>
+                <td>
+                    男<input type="radio" name="sex" checked="checked" value="male" />
+                    &nbsp;&nbsp;
+                    女<input type="radio" name="sex" value="female" />
+                </td>
+            </tr>
+            <tr align="center">
+                <td>地址</td>
+                <td>
+                    <select name="address">
+                        <option value="beijing">北京</option>
+                        <option value="shanghai">上海</option>
+                    </select>
+                </td>
+            </tr>
+            <tr align="center">
+                <td>兴趣爱好</td>
+                <td>
+                    <!--name属性值必须都一样 -->
+                    篮球<input type="checkbox" name="hobby" value="lanqiu" />
+                    足球<input type="checkbox" name="hobby" value="zuqiu" />
+                    排球<input type="checkbox" name="hobby" value="paiqiu" />
+                </td>
+            </tr>
+            <tr align="center">
+                <td>上传文件</td>
+                <td><input type="file" name="filename" /></td>
+            </tr>
+            <tr align="center">
+                <td>头像</td>
+                <td>
+                    <input type="image" src="img/2.png" name="lagou" />
+                </td>
+            </tr>
+            <tr align="center">
+                <td>我的简介</td>
+                <td>
+                    <textarea name="remark" cols="30" rows="10"></textarea>
+                </td>
+            </tr>
+            <tr align="center">
+                <td colspan="2">
+                    <input type="submit" value="注册" />
+                    <input type="reset" value="重置" />
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</body>
+
+</html>
+
+
+<!--
+TODO VSCode
+保存工作区
+打开文件夹后,选择"文件>将工作区另存为…,为工作区文件起一个名字,存储在刚才的文件夹下即可 
+VSCode的快捷键
+!回车 :  会生成模板代码
+p*4 : 可以生成4个子标签
+
+ctrl+shift+p 打开命令面板
+ctrl+b 显示隐藏侧边栏
+ctrl+p 浏览文件
+ctrl+w 关闭文件
+ctrl+/ 注释
+shift+alt+a 块注释
+shift+Alt+f 格式化文档
+ctrl+shift+k 删除行
+
+常用插件
+chinese Language 中文
+HTML CSS Supprot  html文档及css样式支持
+HTMLHint 代码检测浏
+open in browser 在浏览器中打开
+live server 开启本地服务器
+Auto Rename Tag 自动设置标签
+vetur  辅助工具
+
+todo 段落标签
+&nbsp; 空格
+  <p></p>  段落
+  <hr>    分割线 
+  <br/>  换行
+
+todo 字体标签
+-->

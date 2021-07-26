@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Js案例</title>
+
+    <script>
+        function fun1(){
+            alert("周期任务");
+        }
+        // 该方法运行可以停止周期执行任务
+        function stopInterval(){
+            clearlnterval(resultId);
+        }
+        // 该方法运行可以取消定时执行任务
+        function stopTimeout(){
+            clearTimeout(t1);
+        }
+
+
+        // window.setInterval("alert('hello')",2000);
+        // 周期任务
+       //  var resultId = setInterval("fun1()",5000);
+
+       // var t1 = setTimeout("alert('定时任务')",3000);
+       
+    //1,页面加载完毕执行函数
+    window.onload = function(){
+        alert("整个html已经加载完毕...");
+    }
+
+    function load(){
+        alert("body内容加载完毕...");
+    }
+
+    // 提交表单事件
+    function validate(){
+        //可以在该方法中验证用户在表单输入的数据是否合理，如果合理返回true，不合理返回false 不提交
+        return ture;
+    }
+
+
+    function one(){
+        alert("单击按钮了..");
+    }
+
+    function two(){
+        alert("双击按钮了...");
+    }
+
+    function three(){
+        alert("失去光标...");
+    }
+
+    function four(){
+        alert("获取光标...");
+    }
+
+    function five(){
+        alert("用户改变域的内容...");
+    }
+
+    function enter(){
+        //当鼠标进入,div的背景色变为黄色
+        document.getElementById("mydiv").style.backgroundColor="yellow";
+    }
+
+    function down(){
+        document.getElementById("mydiv").style.backgroundColor="green";
+    }
+
+    function up(){
+        document.getElementById("mydiv").style.backgroundColor="red";
+    }
+
+    function out(){
+        document.getElementById("mydiv").style.backgroundColor="blue";
+    }
+
+    
+    // window.onload = function(){
+    //     document.getElementById("btn").onclick=function(){
+    //     alert("单击派发事件..");
+    //     }
+    // }
+
+    </script>
+
+</head>
+<body onload="load()">
+    
+    <!-- 创建一个按钮,给按钮上绑定一个单击事件,关联一个函数,当我们点击按钮时触发函数. -->
+    <input type="button" value="按钮" onclick="fun1()">
+    <input type="button" value="停止周期执行任务" onclick="stopInterval()">
+    <input type="button" value="取消定时执行任务" onclick="stopTimeout()">
+
+    <form action="demo.html" onsubmit="return validate()">
+        用户名<input type="text" name="username"><br>
+        <input type="submit">
+    </form>
+
+    <hr>
+    <form action="demo.html">
+        <input type="button" value="单击" onclick="one()"><br>
+        <input type="button" value="双击" ondblclick="two()"><br>
+        <input type="text" name="username" placeholder="将要失去光标" onblur="three()"><br>
+        <input type="text" name="age" placeholder="将要获取光标" onfocus="four()"><br>
+        <select name="city" onchange="five()">
+            <option value="beijing">北京</option>
+            <option value="shanghai">上海</option>
+            <option value="shenzhen">深圳</option>
+        </select><br>
+    </form>
+
+    <div id="mydiv" onmouseenter="enter()" onmousedown="down()" onmouseup="up()" onmouseout="out()">鼠标</div>
+    <hr>
+    <input type="button" value="派发事件" id="btn">
+</body>
+<script>
+    // 注意事项:
+    // 如果是派发事件,js代码如果要写在html代码上面,需要写页面加载函数中才可以执行.
+    // 或者js代码直接写html下方
+    document.getElementById("btn").onclick=function(){
+        alert("单击派发事件..");
+    }
+</script>
+</html>
+
+<!--
+事件：监听html元素
+
+定时器
+1. setinterval(is代码/函数,毫秒值);反复执行的定时器
+2. clearlnterval(定时器的id值);取消反复执行的定时器
+3. setTimeoutis代码/函数,毫秒值);执行一次的定时器
+4. clearTimeout(定时器的id值);取消执行一次的定时器
+
+
+事件介绍:
+window.onload页面加载函数,当整个html页面加载完毕之后执行该该事件关联的函数.
+onload 某个页面或图像被完成加载
+onsubmit当表单提交时触发该事件--注意事件源是表单formr
+
+需求描述:
+1,页面加载完毕执行函数
+2.body加载完毕,执行函数
+3,提交表单事件
+
+事件介绍
+onload 某个页面或图像被完成加载
+onsubmit 当表单提交时触发该事件---注意事件源是表单form
+onclick 鼠标点击某个对象
+ondblclick 鼠标双击某个对象
+onblur 元素失去焦点
+onfocus 元素获得焦点
+onchange 用户改变域的内容
+onkeydown 某个键盘的键被按下
+onkeypress 某个键盘的键被按下或按住
+onkeyup 某个键盘的键被松开
+onmousedown 某个鼠标按键被按下
+onmouseup 某个鼠标按键被松开
+onmouseover 鼠标被移到某元素之上
+onmouseout 鼠标从某元素移开
+onmousemove 鼠标被移动
+
+事件绑定 将监听事件绑定到指定html元素上,关联函数
+
+事件派发 不会修改原来的html中的元素,获取该元素给该元素派发一个事件
+-->

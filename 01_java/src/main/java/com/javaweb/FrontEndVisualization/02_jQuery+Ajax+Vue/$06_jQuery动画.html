@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+    // 引入jquery
+    <script src="jQuery类库\jquery-3.6.0.js"></script>
+    <style>
+
+    </style>
+    <title>无标题文档</title>
+
+    <script>
+        //1.需求1:点击显示,将div展示出来
+        function fn1() {
+            //$("div").show("slow");
+            $("div").show(2000, "linear");
+        }
+
+        //2.需求2:点击隐藏,将div隐藏起来
+        function fn2() {
+            $("div").hide(1000, "swing", function () {
+                alert("已经隐藏完毕了.");
+            });
+        }
+
+        //3.需求3:点击切换,隐藏和显示效果切换
+        function fn3() {
+            $("div").toggle(1000);
+        }
+
+
+        /*
+        slideDown([speed, [easing], [fn]])向下滑动方法(划入) 展现
+        slideUp([speed, [easing], [fn]])向上滑动方法(划出) 消失
+        slideToggle([speed], [easing], [fn])切换元素方法，显示的使之隐藏，隐藏的使之显示
+        */
+        function hideFn() {
+            $("#showDiv").slideUp(1000, "swing");// 向上滑动隐藏
+        }
+
+        function showFn() {
+            $("#showDiv").slideDown();// 向下滑动隐藏
+        }
+
+        function toggleFn() {
+            $("#showDiv").slideToggle();// 滑动 滑出
+        }
+
+
+        //需求:使用链式编程,给p标签设置字体颜色为红色,向上滑动效果,向下滑动效果
+        $(function(){
+            $("#b1").click(function(){
+                //获取p标签,设置颜色,向上滑动效果和向下滑动效果
+                $("#p1").css("color","red").slideUp(2000).slideDown(2000);
+            })
+
+            $("#b2").click(function(){
+                $("#d1").animate({height:"300px",opacity:"0.4"},"slow")
+                .animate({width:"400px",opacity:"0.6"},"slow")
+                .animate({left:"300px"},"slow")
+                .animate({top:"300px"},"slow",function(){
+                    alert("动画演示完毕！");
+                })
+            })
+        })
+
+        // 需求:使用animate实现div高度变为300px ,透明度opacity 0.4, 宽度变为400px,透明度opacity 0.6 , 向右移动300px, 
+        // 再向下移动300px,弹出框提示动画演示结束.
+
+    </script>
+</head>
+
+<body>
+    <input type="button" value="显示" onclick="fn1()">
+    <input type="button" value="隐藏" onclick="fn2()">
+    <input type="button" value="切换" onclick="fn3()">
+    <hr>
+    <div style="width: 200px;height: 200px; background-color: yellow; border: 1px solid red;
+        display: none;"></div>
+    <hr>
+
+    <input type="button" value="点击按钮隐藏div" onclick="hideFn()">
+    <input type="button" value="点击按钮显示div" onclick="showFn()">
+    <input type="button" value="点击按钮切换div显示和隐藏" onclick="toggleFn()">
+    <div id="showDiv" style="width:150px;height:150px;background:gold">
+    </div>
+    <hr>
+
+    <p id="p1">有道无术,术尚可求,有术无道,止于术</p>
+    <button id="b1">点击我会触发多个方法</button>
+    <hr>
+
+    <button id="b2">开始动画 animate自定义动画</button>
+    <div id="d1" style="background:#FF0000;height:100px;width:100px;position:absolute;"></div>
+
+
+
+</body>
+
+
+</html>
+
+<!--
+jQuery动画
+show([speed,[easing],[fn]]) 显示元素方法
+hide([speed,[easing],[fn]]) 隐藏元素方法
+toggle([speed],[easing],[fn]) 切换元素方法，显示的使之隐藏，隐藏的使之显示
+
+speed 三种预定速度之一的字符串("slow","normal", or "fast")或表示动画时长的毫秒数值(如：1000)
+easing 用来指定切换效果，默认是"swing"，可用参数"linear"
+fn 在动画完成时执行的函数，每个元素执行一次
+
+
+2 滑动效果
+slideDown([speed,[easing],[fn]]) 向下滑动方法
+slideUp([speed,[easing],[fn]]) 向上滑动方法
+slideToggle([speed],[easing],[fn]) 切换元素方法，显示的使之隐藏，隐藏的使之显示
+
+speed 三种预定速度之一的字符串("slow","normal", or "fast")或表示动画时长的毫秒数值(如：1000)
+easing 用来指定切换效果，默认是"swing"，可用参数"linear"
+fn 在动画完成时执行的函数，每个元素执行一次
+
+
+链式编程
+链是允许我们在同一个元素上在一条语句中运行多个jQuery方法，可以把动作/方法链接在 一起 ；这样的话，浏览
+器就不必多次查找相同的元素。如需链接一个动作， 只需简单地把该动作追加到之前的动作上。 下面的例子把
+css()、slideUp() 和 slideDown() 链接在一起。"p1" 元素首先会变为红 色，然后向上滑动，再然后向下滑动：
+
+animate自定义动画
+$(selector).animate({params},speed,callback);
+
+必需的 params 参数定义形成动画的 CSS 属性。 可选的 speed 参数规定效果的时长 。它可以取以下
+值："slow"、"fast" 或毫秒。 可选的 callback 参数是动画完成后所执行的函数名称。
+
+
+
+-->

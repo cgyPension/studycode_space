@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>内置对象</title>
+
+    <script>
+      var str = "abcdefg";
+      var str1 = new String("abcdef");
+
+    //   alert(typeof str); // String
+    //   alert(typeof str1); // object
+
+    // alert(str.charAt(0)); // 返回指定位置的字符
+    // alert(str.indexOf("a"));
+    // alert(str.lastIndexOf("a"));
+
+    
+    // var str3 = "e,v,z";
+    // var strArr = str3.split(",");
+    // strArr.forEach(element => {
+    //     alert(element);
+    // });
+
+    // alert(str.substring(1,3)); // bc
+    // alert(str.substr(3)); //defg
+    // alert(str.substr(2,3)); //cde
+
+    var arr1 = new Array();
+    var arr2 = new Array(3);
+    var arr3 = new Array(1,2,3,true,"abc");
+    var arr4 = [11,"bb",false];
+    alert(arr4);
+    alert(arr3.length);
+
+
+
+    </script>
+
+</head>
+<body>
+    
+
+</body>
+
+</html>
+
+<!--
+    JS内置对象 String
+charAt(x) 返回在指定位置的字符
+indexOf(x) 检索字符串
+lastIndexOf(x) 从后向前搜索字符串。
+split(x) 把字符串分割为字符串数组。
+substring(开始索引,结尾索引) 获取两个索引之间的字符,包含头,不包含尾
+substr(开始索引) 获取的是开始索引到结尾之间的字符
+substr(开始索引,字符个数) 从开始索引开始,获取指定个数个字符
+
+JS内置对象 Array
+1 js中数组没有数组下标越界异常
+2 js中数组的长度是不固定的,如果超出范围,自动扩充
+3 js中数组元素的类型是可以多种的. 
+
+-->
