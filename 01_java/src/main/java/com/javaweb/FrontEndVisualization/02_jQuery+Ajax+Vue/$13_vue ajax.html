@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+    <!-- 引入jquery -->
+    <script src="jQuery类库\jquery-3.6.0.js"></script>
+    <!-- 引入vue v2.x 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- 官网提供的 axios 在线地址 -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+
+    </style>
+    <title>vue入门</title>
+
+
+</head>
+
+<body>
+    <div id ="app1">
+        <input type="button" value="生成笑话" @click="createJoke"><br>
+        <p v-for="(element,index) in joke">{{index+1}}.{{element}}</p>
+    </div>
+    <hr>
+    <div id ="app2">
+        <input type="text" name="username" v-model="username">
+        <input type="button" value="检查用户名是否可以注册" @click="createUserName"><br>
+    </div>
+  
+
+
+</body>
+
+<script>
+    /*
+        get格式:
+        1. axios.get(地址?key1=value1&key2=value).then(function(response){},function(error)
+        {})
+        2. axios.get(地址,{params:{key1:value1,key2:value2}}).then(function(response)
+        {},function(error){})
+        请求地址:https://autumnfish.cn/api/joke/list
+        请求方法:get3.axios总结
+        1. axios 必须导包才能使用
+        2. 使用get或者post方法,就可以发送请求
+        3. then方法中的回调函数,会在请求成功或者请求失败的时候触发
+        4. 通过回调函数的形参可以获取响应的内容,或者错误信息
+        4.其他请求类型
+        axios.request(config)
+        axios.get(url[, config])
+        axios.delete(url[, config])
+        axios.head(url[, config])
+        axios.post(url[, data[, config]])
+        axios.put(url[, data[, config]])
+        axios.patch(url[, data[, config]])
+        第五章 vue综合练习
+        请求参数:num(笑话条数,数字)
+        响应内容:随机笑话
+    */
+    var app1 = new Vue({
+        el: '#app1',
+        data: {
+           joke:""
+        },
+        methods: {
+            //函数的目的是获取生成的笑话在p标签中展示
+           createJoke(){
+               // 发送ajax异步请求
+               var t = this;
+            axios.get("https://autumnfish.cn/api/joke/list?num=3").then(
+                function(response){
+                console.log(response.data.jokes);
+                // response.data.jokes 是笑话的数组
+               // this.joke = response.data.jokes; vue不能直接用this 要在函数外面定义
+                t.joke = response.data.jokes;
+            },
+            function(error){
+                alert("发生错误");
+            })
+
+           }
+        }
+    })
+
+
+   
+    //  post方式
+    //  axios.post(地址,{key:value,key2:value2}).then(function(response){},function(error){})
+    var app2 = new Vue({
+        el: '#app2',
+        data: {
+           username:""
+        },
+        methods: {
+            // 获取用户输入的用户名
+           createUserName(){
+               // 发送ajax异步请求
+              var username = this.username;
+              // 发送post方式的ajax请求
+            axios.post("https://autumnfish.cn/api/user/reg",{"username":username}).then(
+                function(response){
+                console.log(response.data);
+                },
+                function(error){
+                    alert("发生错误");
+                })
+
+           }
+        }
+    })
+
+</script>
+
+
+</html>
+
+<!--
+官网提供的 axios 在线地址 
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+或者去github中下载源码
+https://github.com/axios/axios
+以GET和POST举例
+
+网易云音乐Api
+https://autumnfish.cn/
+-->

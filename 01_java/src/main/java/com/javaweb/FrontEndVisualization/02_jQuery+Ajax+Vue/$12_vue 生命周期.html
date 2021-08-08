@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+    <!-- 引入jquery -->
+    <script src="jQuery类库\jquery-3.6.0.js"></script>
+    <!-- 引入vue v2.x 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+
+    </style>
+    <title>vue</title>
+
+
+</head>
+
+<body>
+
+    <!-- 
+        
+     -->
+
+    <div id="app">
+        <span id="sp">{{message}}</span>
+    </div>
+
+
+
+</body>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+       
+            message:"哈哈哈哈哈"
+        },
+        methods: {
+            show(){
+                console.log("show 方法被调用")
+            },
+            changeMessage(){
+                this.message="暴富暴富"
+            }
+        },
+        beforeCreate:function(){
+        //console.log("获取message = "+this.message)
+        //this.show();
+        },
+        created(){
+        // console.log("created获取message = "+this.message);
+        // this.show();
+        },
+        beforeMount(){
+        //该方法:可以获取到内存中的data,但是不能获取到页面渲染的数据
+        // console.log("获取内存中的message = "+this.message);
+        // console.log("页面上的内容="+document.getElementById("sp").innerText)
+        },
+        mounted(){
+        //console.log("获取内存中的message = "+this.message);
+        //console.log("页面上的内容="+document.getElementById("sp").innerText)
+        },
+        beforeUpdate(){
+        //当data中的内容该改变是该函数触发
+        //console.log("获取内存中的message = "+this.message);
+        //console.log("页面上的内容="+document.getElementById("sp").innerText)
+        },
+        updated(){
+        //内存中的数据和页面上的数据一致的.
+        console.log("获取内存中的message = "+this.message);
+        console.log("页面上的内容="+document.getElementById("sp").innerText)
+        }
+
+    })
+
+</script>
+
+
+</html>
+
+<!--
+    vue的生命周期
+    vue的生命周期是指从Vue实例创建、运行到销毁期间伴随的这些事件，这些事件对应的函数记录着vue对象的整个
+    生命周期。
+
+    Vue实例的产生过程
+    1. beforeCreate 在实例初始化之后，数据观测和事件配置之前被调用。
+    2. created 在实例创建完成后被立即调用。
+    3. beforeMount 在挂载开始之前被调用。
+    4. mounted el被新创建的vm.$el替换，并挂载到实例上去之后调用该钩子。
+    5. beforeUpdate 数据更新时调用，发生在虚拟DOM打补丁之前。
+    6. updated 由于数据更改导致的虚拟DOM重新渲染和打补丁，在这之后会调用该钩子。
+    7. beforeDestroy 实例销毁之前调用。
+    8. destroyed 实例销毁后调用。
+
+-->

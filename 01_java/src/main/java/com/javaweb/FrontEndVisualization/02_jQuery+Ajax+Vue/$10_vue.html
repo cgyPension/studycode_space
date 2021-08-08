@@ -7,11 +7,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>jQuery</title>
     <!-- 引入jquery -->
-    <script src="jQuery类库\jquery-3.6.0.js"></script> 
+    <script src="jQuery类库\jquery-3.6.0.js"></script>
     <!-- 引入vue v2.x 开发环境版本，包含了有帮助的命令行警告 -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <style>
-
+        .divStyle{
+            border: 1px solid red;
+            background-color: coral;
+            width: 100px;
+            height: 100px;
+        }
+        .fColor{
+            color:purple
+        }
+        .FSize{
+            font-size: 20px;
+        }
     </style>
     <title>vue入门</title>
 
@@ -32,7 +43,7 @@
         {{3+3}}
         {{ true ? 'YES' : 'NO' }}
     </div>
-        
+
     <div id="app2" class="cls">
         {{message}} <br>
         {{num}}
@@ -50,31 +61,149 @@
             1, v-text替换标签体中所有内容; 插值表达式只替换部分内容
             2, v-text补充新的内容是",连接,插值表达式""+连接内容
 
-        -->        
+        -->
         <p v-text="message">p标签中元素原始内容</p>
         <p v-html="url">p标签中元素原始内容1</p> <!-- 超链接解析成功  -->
         <p v-text="url">p标签中元素原始内容2</p> <!-- 超链接解析不成功  -->
     </div>
 
-    
+
     <div id="app4">
         <!--  
             v-if是将元素从dom树中移除
             v-show是将元素设置属性隐藏
-
         -->
         <p v-if="flag">第一个p</p>
         <p v-show="flag">第二个p</p>
     </div>
 
     <div id="app5">
-        <!--  
-
-
-        -->
-      <button>按钮1</button>
-      <button>按钮1</button>
+        <!--  绑定事件的两种方式 -->
+        <button v-on:click="fun1">按钮1</button>
+        <button @click="fun2">按钮2</button>
     </div>
+
+    <div id="app6">
+        <!--
+            1.获取元素,操作元素
+            点击按钮一 count值增加
+            点击按钮二 count值减少
+            2.参数传递
+            传递count
+            传递$event : 如果有一个输入框,键盘按下,只能输入数字,不能输入其他内容.
+            需求:有一个文本输入框,只可以输入数字0-9 ,其他内容不能输入.
+        -->
+        <button v-on:click="add">按钮一count增加</button>
+        <button @click="sub">按钮二count减少</button>
+        <hr>
+        <button v-on:click="count += 1">按钮一count增加-方式2</button>
+        <button @click="count -= 1">按钮二count减少-方式2</button>
+        <hr>
+        <button @click="fun(count)">获取元素count</button>
+        <hr>
+        <button @click="fun1($event)">传递事件对象</button>
+        <hr>
+        <input type="text" name="name" id="id" @keydown="fun2($event)">
+        <h2>{{count}}</h2>
+    </div>
+
+    <div id="app7">
+        <!--  
+            格式1: 
+            v-on:事件名称.修饰符="函数名称"
+            @事件名.修饰符= "methods中的方法名"
+            需求:1,点击一个按钮,触发函数,仅仅只触发一次
+            2·输入框,只有点击回车才会触发函数
+        
+        -->
+        <button v-on:click.once="fun">按钮只触发一次</button>
+        <input type="text" name="name" id="id2" @keydown.enter="fun2">
+    </div>
+
+    <div id="app8">
+        <!-- v-for作用:列表渲染,当遇到相似的标签结构时,就用v-for去渲染
+        v-for="元素 in 容器(数组和对象)"
+        v-for="数组中的元素 in data中的数组名"
+        v-for="对象中的属性值 in data中的对象名"
+        -->
+        <!-- --1.循环数组arr,打印遍历元素 -->
+        <p v-for="item in list">{{item}}</p>
+        <hr>
+        <!-- (v,i) in 数组  把索引打印出来  -->
+        <p v-for="(item,index) in list">{{item}}----{{index}}</p>
+        <hr>
+        <!-- 对象 -->
+        <!-- (v,k,i)in 对象
+        v:值
+        k:键
+        i:对象中每对key-value的索引 从0开始
+        注意: v,k,i是参数名,见名知意即可!
+        -->
+        <p v-for="value in per">{{value}}</p>
+        <hr>
+        <p v-for="(value,key) in per">{{value}}----{{key}}</p>
+        <hr>
+        <p v-for="(value,key,index) in per">{{value}}----{{key}}--{{index}}</p>
+        <hr>
+         <!-- 循环学生数组对象,将内容展示在table表格中 -->
+         <table border="1px" width="50%" cellspacing="0" align="center">
+             <tr>
+                 <th>学生编号</th>
+                 <th>学生姓名</th>
+                 <th>学校</th>
+             </tr>
+             <tr v-for="stu in students" align="center">
+                 <td>{{stu.sid}}</td>
+                 <td>{{stu.sname}}</td>
+                 <td>{{stu.school}}</td>
+             </tr>
+         </table>
+    </div>
+
+    <!--
+        语法：
+        v-bind 作用: 可以绑定标签上的任何属性。
+        格式1:v-bind:属性名="data中的值"
+        简化格式::属性名="data中的值
+        对象语法:v-bind:属性名="[属性名:data中的值}"
+        数组语法：v-bind:属性名="[data中值1,data中值2...]"
+        
+        需求:
+        1,使用v-bind设置图片的src属性
+        2.使用v-bind设置class样式 (对象语法)
+        3,使用v-bind设置class多个属性 (数组语法)
+        4.简化语法
+    -->
+    <div id="app9">
+        <!--1.使用v-bind设置图片的src属性-->
+        <img v-bind:src="imgUrl"/><br>
+        <!-- 2.使用v-bind设置class样式 (原始方式) -->
+        <div v-bind:class="isDivStyle?'divStyle':''"></div>
+        <!--2.使用v-bind设置class样式 (对象语法)-->
+        <hr>
+        <div v-bind:class="{divStyle:DivStyle}"></div>
+        <!--3,使用v-bind设置class多个属性 (数组语法) -->
+        <p v-bind:class="[fontColor,fontSize]">用v-bind设置class多个属性 (数组语法)</p>
+    </div>
+
+    
+    <!--
+        v-model
+        作用: 获取和设置表单元素的值(双向数据绑定)
+        特点: 双向数据绑定
+        数据发生变化可以更新到界面
+        通过界面可以更改数据
+
+        需求:
+        1,使用v-model设置message和input文本框内容双向绑定
+        2·点击按钮修改message内容
+    -->
+    <div id="app10">
+        <input type="text" name="name" id="id" v-model="message"><br>
+        <input type="button" value="点击按钮修改message" @click="update"><br>
+        <h2>{{message}}</h2>
+    </div>
+
 
 </body>
 <!-- 2.创建vue对象,设置e1属性和data属性 
@@ -102,34 +231,128 @@
         data: {
 
             message: "hello cls !!",
-            num:12,
-            person:{"name":"jane","age":18},
-            date:new Date(),
-            flag:false,
-            ar:["aa","bb",true,13]
+            num: 12,
+            person: { "name": "jane", "age": 18 },
+            date: new Date(),
+            flag: false,
+            ar: ["aa", "bb", true, 13]
         }
     })
 
     var app3 = new Vue({
         el: '#app3',
         data: {
-            url:"<a href='http://www.baidu.com'>跳转到百度</a>"
+            url: "<a href='http://www.baidu.com'>跳转到百度</a>"
         }
     })
 
     var app4 = new Vue({
         el: '#app4',
         data: {
-            flag:false
+            flag: false
         }
     })
 
     var app5 = new Vue({
-        el: '#app4',
+        el: '#app5',
         data: {
-            flag:false
+            count: 1
+        },
+        methods: {
+            fun1: function () {
+                alert("按钮1被点击了")
+            },
+            fun2: function () {
+                alert("按钮2被点击了")
+            }
         }
     })
+
+    var app6 = new Vue({
+        el: '#app6',
+        data: {
+            count: 1
+        },
+        methods: {
+            add: function () {
+                this.count += 1
+            },
+            sub: function () {
+                this.count -= 1
+            },
+            fun: function (c) {
+                alert(c)
+            },
+            fun1: function (e) {
+                alert(e);
+            },
+            fun2: function (e) {
+                //获取到键盘事件,可以获取到具体的案件 keyCode
+                //alert(e.keyCode)
+                //如果按钮大于57 或者按钮小于48 ,阻止事件发生 preventDefault()
+                if (e.keyCode > 57 || e.keyCode < 48) {
+                    //阻止事件发生
+                    e.preventDefault();
+                }
+            }
+        }
+    })
+
+    var app7 = new Vue({
+        el: '#app7',
+        methods: {
+            fun: function () {
+                alert("按钮被点击了")
+            },
+            fun2: function () {
+                alert("你点击了回车键")
+            }
+        }
+    })
+
+    var app8 = new Vue({
+        el: '#app8',
+
+        data: {
+            list: ['a', 'b', 'c'],
+            per: {
+            name: '老王',
+            age: 38,
+            gender: '男'
+            },
+            students:[
+                {"sid":1,"sname":"马云","school":"湖畔大学"},
+                {"sid":2,"sname":"马1","school":"湖大学"},
+                {"sid":3,"sname":"马2","school":"畔大学"}
+            ]
+        },
+        methods: {
+        }
+
+    })
+
+    var app9 = new Vue({
+        el: '#app9',
+        data: {
+            imgUrl:"D:\code\studycode_space\01_java\src\main\java\com\javaweb\FrontEndVisualization\01_Html+Css+Javascript\img\2.jpg",
+            isDivStyle:true,
+            fontColor:"fColor",
+            fontSize:"FSize"
+        }
+    })
+
+    var app10 = new Vue({
+        el: '#app10',
+        data: {
+            message:"大数据欢迎您"
+        },
+        methods:{
+            update:function(){
+                this.message="前端！！！"
+            }
+        }
+    })
+
 </script>
 
 
@@ -166,5 +389,20 @@ v-text和插值表达式的区别v-text 更新整个标签中的内容
 v-html:更新标签中的内容/标签
 可以渲染内容中的HTML标签
 注意:尽量避免使用，容易造成危险 (XSS跨站脚本攻击)
+
+按键别名:
+.enter
+.tab
+.delete
+.esc
+.space
+.up
+.down
+.le
+.right
+.ctrl
+.alt
+.shift
+
 
 -->

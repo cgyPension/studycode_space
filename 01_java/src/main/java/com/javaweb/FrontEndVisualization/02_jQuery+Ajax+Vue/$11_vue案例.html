@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+    <!-- 引入jquery -->
+    <script src="jQuery类库\jquery-3.6.0.js"></script>
+    <!-- 引入vue v2.x 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+
+    </style>
+    <title>vue入门</title>
+
+
+</head>
+
+<body>
+
+    <!-- 
+        功能分析：
+            渲染表格
+            删除商品
+            添加商品
+     -->
+
+    <div id="app">
+        <table border="1px" width="50%" height="450px" align="center" cellspacing="0">
+                <tr>
+                    <th>编号</th>
+                    <th>商品名称</th>
+                    <th>日期</th>
+                    <th>操作</th>
+                </tr>
+                <tr v-for="(item,index) in items" align="center">
+                    <td>{{index+1}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.data}}</td>
+                    <td><a href="#" @click.prevent="deleteItem(index)">删除</a></td>
+                </tr>
+                <tr align="center">
+                    <td colspan="4">
+                        <input type="text" name="name" v-model="name">
+                        <input:disabled="name.length===0" type="button" value="添加商品" @click="addItem">
+                    </td>
+                </tr>
+        </table>
+    </div>
+
+
+
+</body>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            items: [{
+                name: 'LV',
+                date: '2020-4-1'
+            }, {
+                name: 'Lenovo',
+                date: '2020-5-1'
+            }, {
+                name: 'TCL',
+                date: '2020-6-1'
+            }],
+            name:''
+
+        },
+        methods: {
+            deleteItem:function(index){
+                // 确认删除提示
+                if(confirm("您是否确认删除？")){
+                    // 删除一行 splice(index,个数)
+                    this.items.splice(index,1);
+                }
+            },
+            addItem:function(){
+                // 创建一个item元素 设置内容
+                var item={
+                    name:this.name,
+                    date:new Date().toLocaleDateString()
+                }
+                // 将我们创建好的item对象添加到items
+                this.items.unshift(item);
+                 // 添加完毕后 文本框内容删除
+                 this.name='';
+            }
+        }
+    })
+
+</script>
+
+
+</html>
+
+<!--
+
+
+-->
