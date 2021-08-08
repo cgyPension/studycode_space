@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highcharts</title>
+    // 引入 Highcharts
+    <script src="http://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
+</head>
+
+<body>
+    <!--
+            实现入门案例的步骤:
+            1·引入highcharts.js文件
+            2.body中编写一个div,用于展示数据
+            3.script里面编写highcharts代码
+        -->
+    <div id="container" style="width:600px;height:400px;"></div>
+</body>
+
+<script>
+    // 图表配置
+    var options = {
+        chart: {
+            type: 'bar' //指定图表为柱状图，默认是折线图（line）
+        },
+        title: {
+            text: '我的第一个图表' // 标题
+        },
+        xAxis: {
+            categories: ['苹果', '香蕉', '橙子'] // x 轴分类
+        },
+        yAxis: {
+            title: {
+                text: '吃水果个数' // y 轴标题
+            }
+        },
+        series: [{ // 数据列
+            name: '小明', // 数据列名
+            data: [1, 0, 4] // 数据
+        }, {
+            name: '小红',
+            data: [5, 7, 3]
+        }]
+    };
+    // 图表初始化函数
+    var chart = Highcharts.chart('container', options);
+</script>
+
+</html>
+
+<!--
+混合使用（重要）
+A. Highcharts + Highstock 时只需要引入 highstock.js
+// Highcharts
+<script src="http://cdn.highcharts.com.cn/highcharts/8.1.2/highcharts.js"></script>
+// Highcharts Stock
+<script src="http://cdn.highcharts.com.cn/highstock/8.1.2/highstock.js"></script>
+// Highcharts Maps
+<script src="http://cdn.highcharts.com.cn/highmaps/8.1.2/highmaps.js"></script>
+// Highcharts Gantt
+<script src="http://cdn.highcharts.com.cn/gantt/8.1.2/highcharts-gantt.js"></script>
+<script src="http://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
+Highstock 是完全包含 Highcharts 的，是在 Highcharts 的基础上增加了更多高级功能；Highmaps 则完全独立，不过
+我们提供了地图功能模块 map.js （在 Highmaps 资源包的 modules 目录）供 Highcharts 或 Highstock 调用。B. Highcharts + Highmaps 混合使用是需要 引入 highcharts.js + map.js
+C. Highstock + Highmaps 或 Highcharts + Highstock + Highmaps 混合使用时需引入 highstock.js + map.js
+
+
+
+-->

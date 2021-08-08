@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highcharts</title>
+    // 引入 Highcharts
+    <script src="http://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
+</head>
+
+<body>
+    <!--
+            实现入门案例的步骤:
+            1·引入highcharts.js文件
+            2.body中编写一个div,用于展示数据
+            3.script里面编写highcharts代码
+        -->
+    <div id="container" style="min-width:600;height:400px;"></div>
+    
+</body>
+
+<script>
+    // 图表配置
+    var options = {
+        chart: {
+            type: 'column' 
+        },
+        title: {
+            text: '月平均降雨量' // 标题
+        },
+        subtitle: {
+            text: '数据来源-官网'
+        },
+        xAxis: {
+            categories: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'] // x 轴分类
+        },
+        yAxis: {
+            title: {
+                text: '降雨量（mm）' // y 轴标题
+            }
+        },
+        tooltip:{
+            // head + 每个 point + footer 拼接成完整的 table
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        series: [{ // 数据列
+            name: '东京',
+            data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+        }, {
+            name: '伦敦',
+            data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+        },{
+            name: '佛山',
+            data: [3.4, 6.2, 5.3, 3.4, 11.9, 15.2, 17.0, 16.6, 17.2, 10.3, 6.6, 6.6]
+        }]
+    };
+    // 图表初始化函数
+    var chart = Highcharts.chart('container', options);
+</script>
+
+</html>
+
+<!--
+混合使用（重要）
+A. Highcharts + Highstock 时只需要引入 highstock.js
+// Highcharts
+<script src="http://cdn.highcharts.com.cn/highcharts/8.1.2/highcharts.js"></script>
+// Highcharts Stock
+<script src="http://cdn.highcharts.com.cn/highstock/8.1.2/highstock.js"></script>
+// Highcharts Maps
+<script src="http://cdn.highcharts.com.cn/highmaps/8.1.2/highmaps.js"></script>
+// Highcharts Gantt
+<script src="http://cdn.highcharts.com.cn/gantt/8.1.2/highcharts-gantt.js"></script>
+<script src="http://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
+Highstock 是完全包含 Highcharts 的，是在 Highcharts 的基础上增加了更多高级功能；Highmaps 则完全独立，不过
+我们提供了地图功能模块 map.js （在 Highmaps 资源包的 modules 目录）供 Highcharts 或 Highstock 调用。B. Highcharts + Highmaps 混合使用是需要 引入 highcharts.js + map.js
+C. Highstock + Highmaps 或 Highcharts + Highstock + Highmaps 混合使用时需引入 highstock.js + map.js
+
+
+
+-->

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highcharts</title>
+    // 引入 Highcharts
+    <script src="http://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
+</head>
+
+<body>
+    <div id="container" style="width:800px;height:450px;"></div>
+</body>
+
+<script>
+    // 图表配置
+    var options = {
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: '月平均气温' // 标题
+        },
+        subtitle: {
+            text: '数据来源-官网'
+        },
+        xAxis: {
+            categories: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'] // x 轴分类
+        },
+        yAxis: {
+            title: {
+                text: '气温 (°C)'
+            }
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    // 开启数据标签
+                    enabled: true
+                },
+                // 关闭鼠标跟踪，对应的提示框、点击事件会失效
+                enableMouseTracking: false
+            }
+        },
+        series: [{ // 数据列
+            name: '东京',
+            data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+        }, {
+            name: '伦敦',
+            data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+        }]
+    };
+    // 图表初始化函数
+    var chart = Highcharts.chart('container', options);
+</script>
+
+</html>
+
+<!--
+混合使用（重要）
+A. Highcharts + Highstock 时只需要引入 highstock.js
+// Highcharts
+<script src="http://cdn.highcharts.com.cn/highcharts/8.1.2/highcharts.js"></script>
+// Highcharts Stock
+<script src="http://cdn.highcharts.com.cn/highstock/8.1.2/highstock.js"></script>
+// Highcharts Maps
+<script src="http://cdn.highcharts.com.cn/highmaps/8.1.2/highmaps.js"></script>
+// Highcharts Gantt
+<script src="http://cdn.highcharts.com.cn/gantt/8.1.2/highcharts-gantt.js"></script>
+<script src="http://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
+Highstock 是完全包含 Highcharts 的，是在 Highcharts 的基础上增加了更多高级功能；Highmaps 则完全独立，不过
+我们提供了地图功能模块 map.js （在 Highmaps 资源包的 modules 目录）供 Highcharts 或 Highstock 调用。B. Highcharts + Highmaps 混合使用是需要 引入 highcharts.js + map.js
+C. Highstock + Highmaps 或 Highcharts + Highstock + Highmaps 混合使用时需引入 highstock.js + map.js
+
+
+
+-->
