@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>地图</title>
+    <script src="https://img.hcharts.cn/highmaps/highmaps.js"></script>
+    <script src="https://data.jianshukeji.com/geochina/china.js"></script>
+</head>
+
+<body>
+    <div id="container" style="min-width: 400;height: 450px;"></div>
+</body>
+<script>
+    // 随机数据
+    var data = [
+        { "name": "北京", "value": 69 }, { "name": "天津", "value": 14 }, { "name": "河北", "value": 55 }, { "name": "山西", "value": 60 }, { "name": "内蒙古", "value": 44 }, { "name": "辽宁", "value": 89 }, { "name": "吉 林", "value": 98 }, { "name": "黑龙江", "value": 8 }, { "name": "上海", "value": 41 }, { "name": "江苏", "value": 19 }, { "name": "浙江", "value": 35 }, { "name": "安徽", "value": 83 }, { "name": "福建", "value": 24 }, { "name": "江 西", "value": 81 }, { "name": "山东", "value": 28 }, { "name": "河南", "value": 83 }, { "name": "湖北", "value": 52 }, { "name": "湖南", "value": 47 }, { "name": "广东", "value": 91 }, { "name": "广西", "value": 92 }, { "name": "海 南", "value": 84 }, { "name": "重庆", "value": 10 }, { "name": "四川", "value": 91 }, { "name": "贵州", "value": 69 }, { "name": "云南", "value": 30 }, { "name": "西藏", "value": 12 }, { "name": "陕西", "value": 19 }, { "name": "甘 肃", "value": 31 }, { "name": "青海", "value": 10 }, { "name": "宁夏", "value": 10 }, { "name": "新疆", "value": 34 }, { "name": "台湾", "value": 43 }, { "name": "香港", "value": 98 }, { "name": "澳门", "value": 15 }, { "name": "南海诸 岛", "value": 89 }, { "name": "南海诸岛", "value": 77 }
+    ];
+    // 初始化图表
+    var map = new Highcharts.Map('map', {
+        title: {
+            text: '中国地图'
+        },
+        colorAxis: {
+            min: 0,
+            minColor: 'rgb(255,255,255)',
+            maxColor: '#006cee'
+        },
+        series: [{
+            data: data, // 引用上面定义的data到我们series中展示
+            name: '随机数据',
+            mapData: Highcharts.maps['cn/china'], // 引入china.js 中的json数据，绘制地图 根据 name 属性进行关联
+            joinBy: 'name' 
+        }]
+    });
+</script>
+
+</html>
+
+<!--
+
+
+-->
