@@ -24,9 +24,9 @@ public class HdFsClient {
     @Test
     public void testMkdir() throws URISyntaxException, IOException, InterruptedException {
         // 获取文件系统duixang
-        FileSystem fs = FileSystem.get(new URI("hdfs://hadoop102:9820"), new Configuration(), "cgy");
+        FileSystem fs = FileSystem.get(new URI("hdfs://hadoop102:9820"), new Configuration(), "atguigu");
         // 操作hdfs
-        boolean flag = fs.mkdirs(new Path("/java"));
+        boolean flag = fs.mkdirs(new Path("/javatest"));
         if(flag){
             System.out.println("创建成功");
         }else{
