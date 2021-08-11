@@ -16,20 +16,121 @@
     <div id="container" style="min-width: 400;height: 450px;"></div>
 </body>
 <script type="text/javascript">
-// 1 页面加载
-    $(function(){
+    // 1 页面加载
+    $(function () {
         // 2 创建一个配置对象option
-        var option={
+        var option = {
             // 3 设置图标类型
-            chart：
+            chart: {
+                renderTo: 'container', // 引用当前div展示折线图
+                type: "line",//设置图标类型为折线图
+            },
+            title: {
+                text: '异步获取数据'
+            },
+            subtitle: {
+                text: '折线图',
+                x: -20
+            },
+            xAxis: {
+                categories: ['1月', '2月', '3月', '4月', '5月', '6月','7月', '8月', '9月', '10月', '11月', '12月']
+            }, yAxis: {
+                title: {
+                    text: '温度 (°C)'
+                },
+                // 设置双标线
+                plotLines: [{ 
+                    value: 0,// 双标线从0开始
+                    width: 1,// 线宽
+                    color: '#808080'
+                }]
+            },
+            // 设置提示框
+            tooltip: {
+                // 添加一个后缀 相当于单位
+                valueSuffix: '°C'
+            },
+            // 设置图例
+            legend: {
+                layout: 'vertical',// 水平布局
+                align: 'right',//居右
+                verticalAlign: 'middle',//水平居中
+                borderWidth: 0
+            }, Loading: {
+                hideDuration: 1000,//淡出效果的持续时间(以毫秒为单位) showDuration: 1000,//淡入效果的持续时间(以毫秒为单位) labelStyle: {//加载标签的span的CSS样式
+                fontStyle: 'italic',
+                color: 'red',
+                fontSize: "40px"
+            },
+            // 数据是要远程加载的
+            style: {//覆盖在绘图区的加载页面的样式
+                position: 'absolute',
+                backgroundColor: 'white',
+                opacity: 0.5,
+                textAlign: 'center',
+                color: 'red'
+            },
+            credits: {
+                enabled: false // 不展示商标
+            },
+            // 数据是要远程加载的
+            series: []
         }
-    }
-  
+        //定义一个 Highcharts 对象
+        var oChart = null;
+        oChart = new Highcharts.Chart(options);
+        //调用一个方法,给ochart中设置数据
+        Load_SeriesData();
+
+        function Load_SeriesData() {
+            //页面加载的时候,初始加载文字
+            oChart.showLoading("Loading....");
+            // 发送ajax异步请求 获取json数据，
+            $.ajax({
+                url: 'city.json',
+                type: 'GET',
+                dataType: 'json',
+                success: function (Data) {
+                    alert(Data)
+                    console.log(Data);
+                    //遍历Data,创建一个 series对象,给该对象设置获取到的name和arc值
+                    for (i = 0; i < Data.length; i++) {
+                        var DataSeries = {
+                            name: Data[i].name,
+                            data: Data[i].arc
+                        };
+                        // 在循环中给oChart设置该对象DataSeries
+                        oChart.addSeries(DataSeries);
+                    }
+                    oChart.hideLoading("Loading....");
+                }
+            });
+
+        }
+    });
+
 </script>
 
 </html>
 
 <!--
+    city.json文件中的数据
+ [
+{
+        "arc":[7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+    },
+{
+"name":"北京",
+        "arc":[-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+    },
+{
+"name":"上海",
+        "arc":[-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
+    },{
+"name":"江西",
+        "arc":[3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+    }
+]
 
 
 -->
