@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue异步加载图表案例</title>
+    <!-- 引入js文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/4.8.0/echarts.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <!-- vue对象托管该div -->
+    <div id="app">
+        <!-- 第二个div用于展示图表 -->
+        <div id="mychart" style="min-width: 400; height: 400px"></div>
+    </div>
+
+</body>
+
+<script>
+    // 创建一个Vue对象
+    var app = new Vue({
+        el: "#app",
+        methods: {
+            //初始化方法,只要该方法执行就会发送ajax获取远程的数据。进行展示,生成一个 eckart图表
+            initData() {
+                //初始化echarts对象
+                var mychart = echarts.init(document.getElementById("mychart"));
+                console.log("mycahrt ====" + mychart)
+                //发送ajax请求 获取数据
+                axios.get("$12_data.json").then(function (response) {
+                    console.log(response.data)
+                    //给他图表对象设置配置对象
+                    mychart.setOption({
+                        xAxis: {
+                            type: 'category',
+                            data: response.data.xData
+                        },
+                        yAxis: {
+                            type: 'value'
+                        },
+                        series: [{
+                            data: response.data.seriesData,
+                            type: 'bar',
+                            showBackground: true,
+                            backgroundStyle: {
+                                color: 'rgba(220, 220, 220, 0.8)'
+                            }
+                        }]
+                    })
+                })
+            }
+        },
+        //钩子函数 初始化后就会执行这个方法
+        mounted() {
+            this.initData();
+        }
+    })
+
+</script>
+
+</html>
+
+<!--
+
+
+
+-->

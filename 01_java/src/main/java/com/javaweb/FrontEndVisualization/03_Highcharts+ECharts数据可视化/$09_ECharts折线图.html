@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ECharts柱状图</title>
+    <title>ECharts折线图</title>
     <!-- 引入 ECharts 文件 -->
     <script src="echarts.min.js"></script>
 </head>
@@ -26,7 +26,16 @@
     var option = {
         xAxis: {
             type: 'category',
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            // data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            // 每一项也可以是具体的配置项，此时取配置项中的 `value` 为类目名
+            data: [{
+                value: '周一',
+                // 突出周一
+                textStyle: {
+                    fontSize: 20,
+                    color: 'red'
+                }
+            }, '周二', '周三', '周四', '周五', '周六', '周日']
         },
         yAxis: {
             type: 'value'
