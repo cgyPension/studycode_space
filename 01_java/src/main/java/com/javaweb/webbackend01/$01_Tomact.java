@@ -48,6 +48,21 @@ package com.javaweb.webbackend01;
  * 三、独立xml部署 conf/Catalina/localhost 创建xxx.xml(文件名对应虚拟路径)
  *  <Context docbase="D: Wwebapppsmyapd'/>
  *  xx
+ *
+ *
+ *  todo idea 新建web项目 目录结构解释
+ *  web
+ *      WEB-INF 安全目录：没有办法通过浏览器直接访问
+ *
+ *  想要修改tomact 或者发布 可以点击小锤子旁边的选框编辑
+ *      url 端口 等
+ *      Deployment 很重要
+ *     编辑完后 在外面小锤子后面的启动键启动
+ *
+ * 实时更新 热部署 对于页面资源实现了实时更新的效果
+ * On 'Update' action:Update resources
+ * On frame deactivation: Update resourcesa．
+ *
  */
 
 public class $01_Tomact {
