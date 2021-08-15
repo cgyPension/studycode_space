@@ -35,7 +35,7 @@ package com.javaweb.webbackend01;
  *
  * get方式 只有请求头 请求行 没有请求体
  * post方式 三个都有
- * X
+ *
  */
 
 public class $02_Http {
