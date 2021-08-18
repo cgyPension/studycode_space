@@ -18,6 +18,13 @@ package com.javaweb.webbackend01;
  * java类{
  *    service() // 处理逻辑 响应结果
  * }
+ *
+ * todo 快速入门
+ * 编写一个普通点的java类
+ * 创建web项目
+ * 编写普通java类,实现servlet接口
+ * 在web.xml配置url-pattern
+ * 部署web项目启动测试
  */
 
 public class $04_Servlet {
