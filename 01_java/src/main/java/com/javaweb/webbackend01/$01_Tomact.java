@@ -47,7 +47,7 @@ package com.javaweb.webbackend01;
  * 二、server.xml部署 （仅了解）conf、server.xml
  * 三、独立xml部署 conf/Catalina/localhost 创建xxx.xml(文件名对应虚拟路径)
  *  <Context docbase="D: Wwebapppsmyapd'/>
- *  xx
+ *
  *
  *
  *  todo idea 新建web项目 目录结构解释
