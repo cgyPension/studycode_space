@@ -25,7 +25,7 @@ package com.javaweb.webbackend01;
  * 编写普通java类,实现servlet接口
  * 在web.xml配置url-pattern
  * 部署web项目启动测试
- * xx
+ * xxx
  */
 
 public class $04_Servlet {
