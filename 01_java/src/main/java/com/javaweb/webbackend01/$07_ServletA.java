@@ -22,7 +22,7 @@ import java.util.Map;
  * 浏览器:发了一次请求
  * 地址栏:没有发生改变
  * 只能转发到服务器内部资源.
- *x
+ *xx
  */
 
 public class $07_ServletA extends HttpServlet {
