@@ -1,0 +1,78 @@
+package com.javaweb.webbackend01;
+
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+import javax.servlet.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+/**
+ * @author GyuanYuan Cai
+ * 2021/5/30
+ * Description:
+ *
+ * Servlet概述
+ * servlet= server+applet运行在服务器端的java程序
+ * Servlet是一个接口
+ * 类要想通过浏览器被访词到那么这个类就必须直接或间接的实现 Servlet接口
+ * 作用
+ * 接收请求,处理逻辑,响应结果
+ *
+ * web阶段:程序的入口测览器发送请求,由 Tomcat执行某个具体的ava类里面的方法
+ * 实现 servlet规范
+ *
+ * java类{
+ *    service() // 处理逻辑 响应结果
+ * }
+ *
+ * todo 快速入门 项目应该放在 java web项目 tomact管理的
+ * 编写一个普通点的java类
+ * 创建web项目
+ * 编写普通java类,实现servlet接口
+ * 在web.xml配置url-pattern
+ * 部署web项目启动测试
+ *
+ *
+ * 笔试题:请描述下servlet的生命周期:
+ * 答案: servlet是一个单实例多线程的,默认情况下,第一次请求来的时候,才会对该servlet进行实例化,并执行初始化init方法,
+ * 随后再执行service方法完成业务处理,当每一次请求发送过来,都会从新开启一个线程,来执行servlet中的service方法,当服务器关闭或者servlet被移除的时候,会执行destory方法
+ */
+
+public class $04_Servlet implements serlvet {
+    // init servlet对象创建时 调用此方法完成初始化操作 第一次请求时才会执行
+    @Override
+    public void init() throws ServletException {
+
+    }
+
+    // 获取servlet 配置对象
+    @Override
+    public ServletConfig getServletConfig() {
+    return null;
+    }
+
+    // 对外提供服务的方法  tomcat会调用servlet里面的service方法执行执行具体的业务逻辑
+    // ServletRequest：请求对象 借助该对象获取请求参数
+    // ServletResponse：响应对象 借助该对象来向浏览器响应一些数据
+    @Override
+    public void Service(ServletRequest servletrequest, ServletResponse servletresponse) throws ServletException, IOException {
+        System.out.println("servlet入门。。。");
+    }
+
+    // 获取servlet的描述信息
+    @Override
+    public String getServletInfo() {
+        return null;
+    }
+
+    // 当servlet对象销毁 会调用此方法完成销毁操作
+    @Override
+    public void destroy() {
+
+    }
+}

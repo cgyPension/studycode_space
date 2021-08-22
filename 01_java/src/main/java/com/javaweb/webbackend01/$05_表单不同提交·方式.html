@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登陆验证</title>
+</head>
+
+<body>
+<h3>get方式提交表单</h3>
+<form action="http://localhost:8080/servlet_demo/servlet3" method="get">
+   用户： <input type="text" name="username">
+   密码： <input type="password" name="password">
+   爱好：
+    <input type="checkbox" name="hobby" value="somkeing"> 抽烟
+    <input type="checkbox" name="hobby" value="drink"> 喝酒
+    <input type="checkbox" name="hobby" value="perm"> 烫头
+    <input type="submit" value="提交表单">
+</form>
+
+<h3>post方式提交表单</h3>
+<form action="http://localhost:8080/servlet_demo/servlet3" method="post">
+    用户： <input type="text" name="username">
+    密码： <input type="password" name="password">
+    爱好：
+    <input type="checkbox" name="hobby" value="somkeing"> 抽烟
+    <input type="checkbox" name="hobby" value="drink"> 喝酒
+    <input type="checkbox" name="hobby" value="perm"> 烫头
+    <input type="submit" value="提交表单">
+</form>
+
+</body>
+
+</html>
+
+<!--
+这个文件在这个学习阶段 是应该放在java web项目（web 文件下的）
+用tomcat启动
+避免建太多项目而 方便学习 放在写这
+-->
