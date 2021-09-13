@@ -42,7 +42,7 @@ done
 # 数仓DB名称
 HIVE_DB=gmall
 
-# 查询引擎
+# 查询引擎 #
 HIVE_ENGINE=hive
 
 # MySQL相关配置
