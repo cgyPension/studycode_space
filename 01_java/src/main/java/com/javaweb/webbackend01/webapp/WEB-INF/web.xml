@@ -63,4 +63,66 @@
         <url-pattern>/bServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>$08_ServletC</servlet-name>
+        <servlet-class>com.javaweb.webbackend01.$08_ServletC</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>$08_ServletC</servlet-name>
+        <url-pattern>/cServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>$09_ServletD</servlet-name>
+        <servlet-class>com.javaweb.webbackend01.$09_ServletD</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>$09_ServletD</servlet-name>
+        <url-pattern>/dServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>$10_ServletE</servlet-name>
+        <servlet-class>com.javaweb.webbackend01.$10_ServletE</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>$10_ServletE</servlet-name>
+        <url-pattern>/eServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>$11_OneServlet</servlet-name>
+        <servlet-class>com.javaweb.webbackend01.$11_OneServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>$11_OneServlet</servlet-name>
+        <url-pattern>/oneServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>$12_TwoServlet</servlet-name>
+        <servlet-class>com.javaweb.webbackend01.$12_TwoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>$12_TwoServlet</servlet-name>
+        <url-pattern>/twoServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- 全局配置参数：所有的servlet都可以读取 -->
+    <context-param>
+        <param-name>encode</param-name>
+        <param-value>UTF-8</param-value>
+    </context-param>
+
+    <!-- CountServlet -->
+    <servlet>
+        <servlet-name>$14_CountServlet</servlet-name>
+        <servlet-class>com.javaweb.webbackend01.$14_CountServlet</servlet-class>
+        <load-on-startup>4</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>$14_CountServlet</servlet-name>
+        <url-pattern>/countServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>

@@ -14,6 +14,14 @@ import java.io.IOException;
  *
  * 请求转发
  * 一种在服务器内部的资源跳转方式
+ *
+ *
+ * 响应体
+ * 1·字符输出流
+ * Printwriter getwriter()
+ * 2·字节输出流
+ * Servletoutputstream getoutputstream()
+ * 注意:在同一个servlet中,二种类型的输出流不能同时存在,互斥
  */
 
 public class $07_ServletB extends HttpServlet {
@@ -22,6 +30,10 @@ public class $07_ServletB extends HttpServlet {
         // 设置解码为UTF-8 ,解决post中文乱码问题
         request.setCharacterEncoding("UTF-8");
         System.out.println("BServlet中功能上执行了");
+
+        // 从request域中取出数据 a发过来的
+        String hanbao = (String) request.getAttribute("hanbao");
+        System.out.println(hanbao);
     }
 
     @Override
