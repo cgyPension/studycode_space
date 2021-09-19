@@ -36,7 +36,6 @@ import java.net.URLEncoder;
  * 1.最多存储4K字符串
  * 2．存储数据不太安全
  *
- * 概念: session是基于cookie来实现的来
  */
 
 public class $15_CookieServlet_set extends HttpServlet {

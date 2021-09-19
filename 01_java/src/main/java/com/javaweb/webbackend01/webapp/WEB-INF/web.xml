@@ -125,4 +125,78 @@
         <url-pattern>/countServlet</url-pattern>
     </servlet-mapping>
 
+    <!---->
+    <servlet>
+        <servlet-name>$19_FilterServlet</servlet-name>
+        <servlet-class>com.javaweb.webbackend01.$19_FilterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>$19_FilterServlet</servlet-name>
+        <url-pattern>/filterServlet</url-pattern>
+    </servlet-mapping>
+
+    <filter>
+        <filter-name>$20_QuickFilter</filter-name>
+        <filter-class>com.javaweb.webbackend01.$20_QuickFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>$20_QuickFilter</filter-name>
+        <!-- 该拦截器的拦截路径 -->
+        <url-pattern>/filterServlet</url-pattern>
+    </filter-mapping>
+
+    <!--
+    4.2拦截路径
+    在开发时,我们可以指定过滤器的拦截路径来定义拦截目标资源的范围
+    精准匹配用户访问指定目标资源(/targetServlet)时,过滤器进行拦截
+    目录匹配用户访问指定目录下(/user/*)所有资源时,过滤器进行拦截
+    后缀匹配用户访问指定后缀名(*.html)的资源时,过滤器进行拦截
+    匹配所有用户访问该网站所有资源(/*)时,过滤器进行拦截
+    -->
+    <!-- 先声明先执行 -->
+    <filter>
+        <filter-name>$21_AFilter</filter-name>
+        <filter-class>com.javaweb.webbackend01.$21_AFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>$21_AFilter</filter-name>
+        <!-- 该拦截器的拦截路径 -->
+        <url-pattern>/filterServlet</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>$22_BFilter</filter-name>
+        <filter-class>com.javaweb.webbackend01.$22_BFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>$22_BFilter</filter-name>
+        <!-- 该拦截器的拦截路径 -->
+        <url-pattern>/filterServlet</url-pattern>
+    </filter-mapping>
+
+
+    <servlet>
+        <servlet-name>$23_WorksServlet</servlet-name>
+        <servlet-class>com.javaweb.webbackend01.$23_WorksServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>$23_WorksServlet</servlet-name>
+        <url-pattern>/worksServlet</url-pattern>
+    </servlet-mapping>
+
+    <filter>
+        <filter-name>$24_EncodeFilter</filter-name>
+        <filter-class>com.javaweb.webbackend01.$24_EncodeFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>$24_EncodeFilter</filter-name>
+        <!-- 该拦截器的拦截路径 解决浏览器所有请求中文乱码问题 -->
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+    <!-- 配置MyServletContextListener -->
+    <listener>
+        <listener-class>com.javaweb.webbackend01.$25_MyServletContextListener</listener-class>
+    </listener>
 </web-app>
