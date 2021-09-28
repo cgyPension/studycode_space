@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.javaweb.webbackend02.dao.OrdersDaoMapper">
+    <resultMap id="orderswithuser" type="com.javaweb.webbackend02.bean.Orders">
+        <id property="id" column="id"/>
+        <result property="ordertime" column="ordertime"/>
+        <result property="total" column="total"/>
+        <result property="uid" column="uid"/>
+
+        <!--
+            association：在进行一对一关联查询配置时，使用association标签进行管理
+            property="user" :要封装实体的属性名
+            javaType="com. lagou. domain.User"要封装的实体的属性类型
+         -->
+        <association property="user" javaType="com.javaweb.webbackend02.bean.User">
+            <id property="id" column="uid"/>
+            <result property="username" column="username"/>
+            <result property="birthday" column="birthday"/>
+            <result property="sex" column="sex"/>
+            <result property="address" column="address"/>
+        </association>
+    </resultMap>
+    <!-- 一对一关联查询：查询所有订单，与此同时还要查询出每个订单所属的用户信息 -->
+    <select id="selectOrdersAllWithUser"  resultMap="orderswithuser">
+        select * from test.order o left join test.user u on o.uid= u.id
+    </select>
+
+
+    <!-- 一对一嵌套查询：查询所有订单，与此同时还要查询出每个订单所属的用户信息
+
+    嵌套查询
+    2.1先查询订单SELECT FROM orders
+    2.2再根据订单uid外键,查询用户
+    SELECT * FROM user WHERE id=1
+    2.3最后使用mybatis,将以上二步嵌套起来
+    -->
+    <resultMap id="orderswithuser2" type="com.javaweb.webbackend02.bean.Orders">
+        <id property="id" column="id"/>
+        <result property="ordertime" column="ordertime"/>
+        <result property="total" column="total"/>
+        <result property="uid" column="uid"/>
+
+    <!--问题: 1.怎么去执行第二条sq1 , 2.如何执行第二条sq1的时候,把uid作为参数进行传进 -->
+        <association property="user" javaType="com.javaweb.webbackend02.bean.User" select="com.javaweb.webbackend02.dao.UserWithOrdersListDaoMapper.selectId" column="uid">
+        </association>
+    </resultMap>
+    <select id="selectOrdersAllWithUser2"  resultMap="orderswithuser2">
+        select * from test.order
+    </select>
+
+    <!-- 一对多嵌套查询：
+        需求:查询所有用户,与此同时查询出该用户具有的订单
+        先查询用户SELECT* FROM USER
+        根据用户的id主键,查询订单信息SELECT FROM orders WHERE uid=1
+
+    -->
+    <select id="selectUid"  parameterType="int" resultType="com.javaweb.webbackend02.bean.Orders">
+        select * from test.order where uid=#{uid}
+    </select>
+
+</mapper>

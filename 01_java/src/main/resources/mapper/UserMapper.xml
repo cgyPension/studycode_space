@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    namespace :命名空间:与id属性共同构成唯一标识
+    resultType:返回结果类型(自动映射封装) :要封装的实体的全路径
+
+-->
+
+<mapper namespace="test">
+    <!-- 查询所有 -->
+    <select id="user_selectAll" resultType="com.javaweb.webbackend02.bean.User">
+        select * from test.user
+    </select>
+
+    <!-- 新增用户 -->
+    <!-- #{} : mybatis中的占位符,等同于JDBC中的?
+         parameterType :指定接收到的参数类型
+
+         useGeneratedKeys
+         （仅适用于 insert 和 update）这会令 MyBatis 使用 JDBC 的 getGeneratedKeys 方法来取出由数据库内部生成的主键（比如：像 MySQL 和 SQL Server 这样的关系型数据库管理系统的自动递增字段），默认值：false。
+
+         -->
+    <insert id="user_insert" parameterType="com.javaweb.webbackend02.bean.User">
+        insert into test.user(username,birthday,sex,address) values (#{username},#{birthday},#{sex},#{address})
+    </insert>
+
+    <!-- 修改用户 -->
+    <update id="user_update" parameterType="com.javaweb.webbackend02.bean.User">
+        update test.user set username = #{username},birthday = #{birthday},sex = #{sex},address = #{address} where id = #{id}
+    </update>
+
+    <!-- 删除用户 -->
+    <delete id="user_delete" parameterType="int">
+        delete from test.user where id = #{id}
+    </delete>
+</mapper>

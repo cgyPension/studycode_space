@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    使用代理开发模式 要遵循一定的规则：
+    要在资源里面创建同包同名
+    mapper映射文件也要和映射接口同名
+
+    Mapper.xml射文件中namespace与mapper接口全限定名相同
+    Mapper接口方法名和Mapper.xml映射文件中定义的每个statement的id相同
+    Mapper接口方法的输入参数类型和mapper.xml映射文件中定义的每个sq的parameterType的类型相同
+    Mapper接口方法的输出参数类型和mapper.xml映射文件中定义的每个sql的resultType的类型相同
+
+    namespace :命名空间:与id属性共同构成唯一标识
+    resultType:返回结果类型(自动映射封装) :要封装的实体的全路径 如果实体的属性名与表中字段名一致,将查询结果自动封装到实体类中
+    ResultMap 如果实体的属性名写表中字段名不一致,可以使用ResultMap实现手动封装到实体类中
+-->
+
+<mapper namespace="com.javaweb.webbackend02.dao.UserDaoMapper">
+    <!-- 查询某个id -->
+    <select id="selectId" parameterType="int" resultType="com.javaweb.webbackend02.bean.User">
+        select * from test.user where id = #{id}
+    </select>
+
+    <!-- id：标签的唯一标识 type：封装后实体类型 -->
+    <resultMap id="userResultMap" type="com.javaweb.webbackend02.bean.User">
+    <!-- 手动配置映射关系 -->
+    <!-- id: 用来配置主键 -->
+    <id property="id" column="id"></id>
+    <!-- result:表中普通字段的封装-->
+    <result property="usernameabc" column="username"></result>
+    <result property="birthdayabc" column="birthday"></result>
+    <result property="sexabc" column="sex"></result>
+    <result property="addressabc" column="address"></result>
+    </resultMap>
+
+    <!-- 查询所有用户 -->
+    <select id="selectAllResultMap" resultMap="userResultMap">
+        select * from test.user
+    </select>
+
+    <!-- 多条件查询 方式一 -->
+    <select id="selectSexAndAddress" resultMap="userResultMap">
+        /*select * from test.user where sex = #{args0} and address = {args1}*/
+        select * from test.user where sex = #{param1} and address = {param2}
+    </select>
+
+    <!-- 多条件查询 方式二 参数要和接口里注解别名一样 -->
+    <select id="selectSexAndAddress" resultMap="userResultMap">
+        /*select * from test.user where sex = #{args0} and address = {args1}*/
+        select * from test.user where sex = #{id} and address = #{address}
+    </select>
+
+    <!-- 多条件查询 方式三  -->
+    <select id="selectIdAndAddress3" resultMap="userResultMap" parameterType="com.javaweb.webbackend02.bean.User">
+        /*select * from test.user where id = #{args0} and address = {args1}*/
+        select * from test.user where id = #{id} and address = #{address}
+    </select>
+
+    <!-- 模糊查询 方式一 -->
+    <select id="selectUsernameLike" resultMap="userResultMap" parameterType="string">
+        <!-- #(}在mybatis中是占位符, 引用参数值的时候,自动添加单引号 -->
+        select * from test.user where username like #{username}
+    </select>
+
+    <!-- 模糊查询 方式二 -->
+    <select id="selectUsernameLike2" resultMap="userResultMap" parameterType="string">
+        <!-- parameterType是基本数据类型或者string的时候，${}里面的值只能写value
+        ${}:sql原样拼接
+        -->
+        select * from test.user where username like '${value}'
+    </select>
+
+
+
+    <!--
+        useGeneratedkeys:声明返回主键 注意:只适用于主键自增的数据库, mysq和sqlserver支持, oracle不行。
+        （仅适用于 insert 和 update）这会令 MyBatis 使用 JDBC 的 getGeneratedKeys 方法来取出由数据库内部生成的主键（比如：像 MySQL 和 SQL Server 这样的关系型数据库管理系统的自动递增字段），默认值：false。
+
+        keyProperty:把返回主键的值,封装到实体中的那个属性上
+    -->
+    <!-- 添加用户获取返回主键：方式一 -->
+    <insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        insert into test.user(username,birthday,sex,address) values (#{username},#{birthday},#{sex},#{address})
+    </insert>
+
+    <!-- 添加用户获取返回主键：方式二 -->
+    <!--
+        selectKey :适用范围更广,支持所有类型的数据库
+            order="AFTER" : 设置在sql语句执行前(后) ,执行此语句
+
+        keycolumn="id" 指定主键列名
+        keyProperty="id"指定主键t装到实体的id属性中
+        resultType="int"指定主键类型
+        order="AFTER" 设置在sq1语句执行前(后) ,执行此语句
+    -->
+    <insert id="insertUser2" parameterType="User">
+        <selectKey order="AFTER" keyColumn="id" keyProperty="id" resultType="int">
+            SELECT LAST_INSERT_ID();
+        </selectKey>
+        insert into test.user(username,birthday,sex,address) values (#{username},#{birthday},#{sex},#{address})
+    </insert>
+
+
+    <!-- 动态sql的if标签：多条件查询  -->
+    <select id="selectIdAndUsernameIf" resultMap="User" parameterType="User">
+        <!-- select * from test.user where 1=1 -->
+        select * from test.user
+        <!-- test里面写的就是表达式
+             <where>:相当于where 1=1,但是如果没有条件的话,不会拼接上where关键字
+        -->
+        <where>
+            <if test="id!=null">
+                and id = #{id}
+            </if>
+            <if test="username!=null">
+                and username = #{username}
+            </if>
+        </where>
+    </select>
+
+    <!-- 动态sql的if标签：多条件查询  -->
+    <update id="updateIf" parameterType="User">
+        update test.user
+        <!--
+            <set> :在更新的时候,会自动添加set关键字,还会去掉最后一个条件的逗号
+        -->
+        <set>
+            <if test="username!=null">
+                username = #{username},
+            </if>
+            <if test="birthday!=null">
+                birthday = #{birthday},
+            </if>
+            <if test="sex!=null">
+                sex = #{sex},
+            </if>
+            <if test="address!=null">
+                address = #{address},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 抽取重复的sql片段 -->
+    <sql id="selectUser">
+        select * from test.user
+    </sql>
+
+    <!-- 动态sql的foreach标签:多值查询(集合) :根据多个id值查询用户  -->
+    <select id="selectIdsList" parameterType="list" resultMap="User">
+       <include refid="selectUser"/>
+        <!--
+            collection :代表要遍历的集合元素,通常写collection或者list
+            topen:代表语句的开始部分
+            close :代表语句的结束部分
+            item :代表遍历结合中的每个元素,生成的变量名
+            separator:分隔符
+        -->
+        <where>
+            <foreach collection="collection" open="id in (" close=")" item="id" separator=",">
+                #{id}
+            </foreach>
+        </where>
+    </select>
+
+    <!-- 动态sql的foreach标签:多值查询 (数组) :根据多个id值查询用户  -->
+    <select id="selectIdsArray" parameterType="int" resultMap="User">
+        <include refid="selectUser"/>
+        <!--
+
+        -->
+        <where>
+            <foreach collection="array" open="id in (" close=")" item="id" separator=",">
+                #{id}
+            </foreach>
+        </where>
+    </select>
+</mapper>
