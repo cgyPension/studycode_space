@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 引入P命名空间 xmlns:p -->
+
+    <!--
+        在spring配置文件中配置UserDaoImplid
+        id：唯一标识
+        class:类全路径
+
+        scope属性指对象的作用范围,取值如下:
+        singleton   默认值，单例的
+        prototype   多例的 创建出来的bean是多例的,每次从容器中获取都会创建一个新的对象
+        request     WEB项目中, Spring创建一个Bean的对象,将对象存入到request域中
+        session     WEB项目中, Spring创建一个Bean的对象,将对象存入到session域中
+        global session WEB项目中,应用在Portlet环境,如果没有Portlet环境那么globalSession相当于session
+
+        bean生命周期
+        init-method:指定类中的初始化方法名称
+        destroy-method:指定类中销毁方法名称
+     -->
+
+    <!-- 无参构造方法实例化： 它会根据默认无参构造方法来创建类对象,如果bean中没有默认无参构造函数,将会创建失败 -->
+    <bean id="userDaoImpl" class="com.javaweb.Spring.dao.impl.UserDaoImpl" init-method="init" destroy-method="destroy">
+        <!-- -ref:用于引用数据类型的注入, yalue是用于普通数据类型的注入 要在bean里设置set方法 -->
+        <property name="username" value="今天赚钱了吗"/>
+        <property name="age" value="18"/>
+        <!--进行list集合数据类型的注入-->
+        <property name="list">
+            <list>
+                <value>aaa</value>
+               <!-- <ref bean="student"></ref>--> <!-- 可引入其他对象 -->
+            </list>
+        </property>
+
+        <!--进行set集合数据类型的注入-->
+<!--        <property name="set">
+            <set>
+                <value>bbb</value>
+                 <ref bean="student"></ref> &lt;!&ndash; 可引入其他对象 &ndash;&gt;
+            </set>
+        </property>-->
+
+        <!--进行array集合数据类型的注入-->
+        <!--        <property name="array">
+                    <set>
+                        <value>ccc</value>
+                         <ref bean="student"></ref> &lt;!&ndash; 可引入其他对象 &ndash;&gt;
+                    </set>
+                </property>-->
+
+        <!--进行map集合数据类型的注入-->
+<!--                <property name="map">
+                    <map>
+                        <entry key="k1" value="ddd"></entry>
+                        <entry key="k2" value-ref="student"></entry>
+                    </map>
+                </property>-->
+
+        <!--进行properties集合数据类型的注入-->
+                        <property name="properties">
+                            <props>
+                                <prop key="p1">v1</prop>
+                                <prop key="p2">v2</prop>
+                            </props>
+                        </property>
+    </bean>
+
+    <!-- 方法二：工厂静态方法实例化
+        依赖的jar包中有个A类, A类中有个静态方法m1, m1方法的返回值是一个B对象。如果我们频繁使用B对象,此时我们可以将B对象的创建权交给spring的IOC容,器,以后我们在使用B对象时,无需调用A类中的m1方法,直接从I0C容器获得。
+    -->
+    <!--<bean id="userDaoImpl" class="com.javaweb.Spring.factory.StaticFactoryBean" factory-method="createUserDao"></bean>-->
+
+    <!-- 方法三：工厂普通方法实例化
+    依赖的jar包中有个A类, A类中有个普通方法m1, m1方法的返回值是一个B对象。如果我们频繁使用B对象,此时我们可以将B对象的创建权交给spring的IOC容器,以后我们在使用B对象时,无需调用A类中的m1方法,直接从IOC容器获得。
+-->
+<!--    <bean id="dynamicFactoryBean" class="com.javaweb.Spring.factory.DynamicFactoryBean"></bean>
+    <bean id="userDao" factory-bean="dynamicFactoryBean" factory-method = "createUserDao"></bean>-->
+
+    <!--配置UserService-->
+    <bean id="userService" class="com.javaweb.Spring.service.impl.UserServiceImpl" p:userDao-ref="userDaoImpl">
+
+
+
+        <!-- 构造方法注入 -->
+        <!--<constructor-arg index="0" type="com.javaweb.Spring.dao.UserDao" ref="userDaoImpl"/>-->
+        <!-- 简化写法 -->
+        <!--<constructor-arg name="userDao" ref="userDaoImpl"/>-->
+
+        <!--set方法完成依赖注入-->
+        <!--<property name="userDao" ref="userDaoImpl"/>-->
+        <!-- 引入P命名空间要先在协议头配置 -->
+    </bean>
+</beans>
