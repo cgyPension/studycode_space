@@ -25,6 +25,8 @@
         <module>13_docker_springbootdemo</module>
         <module>16_flink1.12</module>
         <module>spring_web</module>
+        <module>spring_MVC</module>
+        <module>spting_mvc</module>
     </modules>
 
     <properties>
