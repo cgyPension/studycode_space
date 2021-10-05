@@ -24,6 +24,7 @@
         <module>summer-framework</module>
         <module>13_docker_springbootdemo</module>
         <module>16_flink1.12</module>
+        <module>spring_web</module>
     </modules>
 
     <properties>

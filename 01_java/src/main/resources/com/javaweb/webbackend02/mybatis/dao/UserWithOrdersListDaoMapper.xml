@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.javaweb.webbackend02.mybatis.dao.UserWithOrdersListDaoMapper">
+    <!--当前映射开启二级缓存-->
+    <cache></cache>
+
+    <resultMap id="userwithorderslist" type="com.javaweb.webbackend02.mybatis.bean.UserWithOrdersList">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="birthday" column="birthday"/>
+        <result property="sex" column="sex"/>
+        <result property="address" column="address"/>
+
+        <!--
+            collection :List 一对多使用collection标签进行关联
+         -->
+        <collection property="ordersList" ofType="com.javaweb.webbackend02.mybatis.bean.Orders">
+            <result property="oid" column="id"/>
+            <result property="ordertime" column="ordertime"/>
+            <result property="total" column="total"/>
+            <result property="uid" column="uid"/>
+        </collection>
+    </resultMap>
+
+
+    <!-- 一对多关联查询：查询所有的用户,同时还要查询出每个用户所关联的订单信息 -->
+    <select id="selectUserWithOrdersList"  resultMap="UserWithOrdersList">
+        select u.*,o.id oid, o.ordertime, o.total, o.uid from test.order o right join test.user u on o.uid= u.id
+    </select>
+
+
+    <resultMap id="userwithrolelist" type="com.javaweb.webbackend02.mybatis.bean.UserWithOrdersList">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="birthday" column="birthday"/>
+        <result property="sex" column="sex"/>
+        <result property="address" column="address"/>
+
+        <!--
+            collection :List 一对多使用collection标签进行关联
+         -->
+        <collection property="roleList" ofType="com.javaweb.webbackend02.mybatis.bean.Role">
+            <result property="rid" column="id"/>
+            <result property="rolename" column="rolename"/>
+            <result property="roledesc" column="roledesc"/>
+        </collection>
+    </resultMap>
+    <!-- 多对多关联查询：查询所有的用户,同时还要查询出每个用户所关联的角色信息 -->
+    <select id="selectUserWithRoleList"  resultMap="UserWithRoleList">
+        SELECT u.*,r.id rid,r.rolename,r.roleDesc FROM test.user u LEFT JOIN sys_user_role ur oN ur.userid =u.id
+            left JOIN sys_role r ON ur.roleid = r.id
+    </select>
+
+
+    <!-- 根据id查询 对应着另外一个文件的嵌套查询
+        useCache="true" 代表当前这个statement是使用二级缓存
+     -->
+    <select id="selectId"  resultType="user" parameterType="int" useCache="true">
+        select * from test.user where id = #{id}
+    </select>
+
+
+    <!-- 一对多嵌套查询 查询所有用户,与此同时查询出该用户具有的订单
+         需求:查询所有用户,与此同时查询出该用户具有的订单
+        先查询用户SELECT* FROM USER
+        根据用户的id主键,查询订单信息SELECT FROM orders WHERE uid=1
+    -->
+    <resultMap id="userOrderMap" type="user">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="birthday" column="birthday"/>
+        <result property="sex" column="sex"/>
+        <result property="address" column="address"/>
+
+        <!--
+            fetchType="lazy" :延迟加载策略
+            fetchType="eager":立即加载策略
+        -->
+    <collection property="ordersList" ofType="com.javaweb.webbackend02.mybatis.bean.Orders" column="id"
+                select="com.javaweb.webbackend02.mybatis.dao.OrdersDaoMapper.selectUid" fetchType="lazy"></collection>
+    </resultMap>
+    <select id="selectUserWithOrdersList2" resultMap="userOrderMap" resultType="UserWithOrdersList" parameterType="int">
+        select * from test.user where id = #{id}
+    </select>
+
+
+    <!--
+        对应着多对多嵌套查询
+        需求:查询用户同时查询出该用户的所有角色
+        先查询用户SELECT* FROM USER
+        根据查询出来的用户id,查询角色信息
+        SELECT * FROM sys_role r INNER JOIN sys_user_role ur oN ur.roleid =r.id
+            where ur.userid=1
+    -->
+    <resultMap id="userwithrolelist2" type="com.javaweb.webbackend02.mybatis.bean.User">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="birthday" column="birthday"/>
+        <result property="sex" column="sex"/>
+        <result property="address" column="address"/>
+
+        <!--
+            collection :List 一对多使用collection标签进行关联
+         -->
+        <collection property="roleList" ofType="com.javaweb.webbackend02.mybatis.bean.Role" column="id" select="com.javaweb.webbackend02.mybatis.dao.RoleMapper.selectUid"></collection>
+    </resultMap>
+    <select id="selectUserWithRoleList2" resultMap="userwithrolelist2" resultType="user" parameterType="int">
+        select * from test.user
+    </select>
+
+</mapper>

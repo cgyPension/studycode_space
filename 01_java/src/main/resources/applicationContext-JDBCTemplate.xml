@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/cache"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+
+    <!-- 使用注解进行开发时,需要在applicationContext.xml中配置组件扫描,作用是指定哪个包及其子包下的Bean需要进行扫描以便识别使用注解配置的类、字段和方法。 -->
+    <context:component-scan base-package="com.javaweb.webbackend02"/>
+
+    <!--jdbcTemplate-->
+<!--
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg name="dataSource" ref="dataSource"/>
+    </bean>
+-->
+
+
+    <!-- 事务注解的支持 -->
+    <!--<tx:annotation-driven/>-->
+
+<!--
+    &lt;!&ndash;事务管理器对象&ndash;&gt;
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <constructor-arg name="dataSource" ref="dataSource"/>
+    </bean>
+
+    &lt;!&ndash;通知增强&ndash;&gt;
+    <tx:advice id="txAdviece"
+-->
+
+</beans>

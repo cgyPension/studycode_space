@@ -1,4 +1,4 @@
 <beans>
     <!-- id:标识 class:存的就是要生成实例的类的全路径 -->
-    <bean id="userDaoImpl" class="com.javaweb.springIOC.dao.impl.UserDaoImpl"></bean>
+    <bean id="userDaoImpl" class="com.javaweb.webbackend02.spring01IOC.dao.impl.UserDaoImpl"></bean>
 </beans>

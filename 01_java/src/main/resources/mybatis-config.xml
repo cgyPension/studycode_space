@@ -20,9 +20,9 @@
 
     <typeAliases>
         <!--方式一:给单个实体起别名-->
-        <typeAlias type="com.javaweb.webbackend02.bean.User" alias="user"></typeAlias>
+        <typeAlias type="com.javaweb.webbackend02.mybatis.bean.User" alias="user"></typeAlias>
         <!--方式二:批量起别名别名就是类名,且不区分大小写-->
-        <package name="com.javaweb.webbackend02.bean"/>
+        <package name="com.javaweb.webbackend02.mybatis.bean"/>
     </typeAliases>
 
     <plugins>
@@ -58,7 +58,7 @@
     <mappers>
         <!--<mapper resource="mapper/UserMapper.xml"></mapper>-->
         <!--<mapper resource="com/javaweb/webbackend02/dao/UserDaoMapper.xml"></mapper>-->
-        <!--<mapper class="com.javaweb.webbackend02.dao.UserDaoMapper"></mapper>-->
+        <!--<mapper class="com.javaweb.webbackend02.mybatis.dao.UserDaoMapper"></mapper>-->
         <!-- 批量加载 -->
         <package name="com.javaweb.webbackend02.dao/"></package>
     </mappers>

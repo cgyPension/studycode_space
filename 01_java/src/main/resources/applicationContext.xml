@@ -24,7 +24,7 @@
      -->
 
     <!-- 无参构造方法实例化： 它会根据默认无参构造方法来创建类对象,如果bean中没有默认无参构造函数,将会创建失败 -->
-    <bean id="userDaoImpl" class="com.javaweb.Spring.dao.impl.UserDaoImpl" init-method="init" destroy-method="destroy">
+    <bean id="userDaoImpl" class="com.javaweb.webbackend02.spring02IOC.dao.impl.UserDaoImpl" init-method="init" destroy-method="destroy">
         <!-- -ref:用于引用数据类型的注入, yalue是用于普通数据类型的注入 要在bean里设置set方法 -->
         <property name="username" value="今天赚钱了吗"/>
         <property name="age" value="18"/>
@@ -72,21 +72,21 @@
     <!-- 方法二：工厂静态方法实例化
         依赖的jar包中有个A类, A类中有个静态方法m1, m1方法的返回值是一个B对象。如果我们频繁使用B对象,此时我们可以将B对象的创建权交给spring的IOC容,器,以后我们在使用B对象时,无需调用A类中的m1方法,直接从I0C容器获得。
     -->
-    <!--<bean id="userDaoImpl" class="com.javaweb.Spring.factory.StaticFactoryBean" factory-method="createUserDao"></bean>-->
+    <!--<bean id="userDaoImpl" class="com.javaweb.webbackend02.Spring.factory.StaticFactoryBean" factory-method="createUserDao"></bean>-->
 
     <!-- 方法三：工厂普通方法实例化
     依赖的jar包中有个A类, A类中有个普通方法m1, m1方法的返回值是一个B对象。如果我们频繁使用B对象,此时我们可以将B对象的创建权交给spring的IOC容器,以后我们在使用B对象时,无需调用A类中的m1方法,直接从IOC容器获得。
 -->
-<!--    <bean id="dynamicFactoryBean" class="com.javaweb.Spring.factory.DynamicFactoryBean"></bean>
+<!--    <bean id="dynamicFactoryBean" class="com.javaweb.webbackend02.Spring.factory.DynamicFactoryBean"></bean>
     <bean id="userDao" factory-bean="dynamicFactoryBean" factory-method = "createUserDao"></bean>-->
 
     <!--配置UserService-->
-    <bean id="userService" class="com.javaweb.Spring.service.impl.UserServiceImpl" p:userDao-ref="userDaoImpl">
+    <bean id="userService" class="com.javaweb.webbackend02.spring02IOC.service.impl.UserServiceImpl" p:userDao-ref="userDaoImpl">
 
 
 
         <!-- 构造方法注入 -->
-        <!--<constructor-arg index="0" type="com.javaweb.Spring.dao.UserDao" ref="userDaoImpl"/>-->
+        <!--<constructor-arg index="0" type="com.javaweb.webbackend02.Spring.dao.UserDao" ref="userDaoImpl"/>-->
         <!-- 简化写法 -->
         <!--<constructor-arg name="userDao" ref="userDaoImpl"/>-->
 

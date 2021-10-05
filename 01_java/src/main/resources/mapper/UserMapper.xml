@@ -10,7 +10,7 @@
 
 <mapper namespace="test">
     <!-- 查询所有 -->
-    <select id="user_selectAll" resultType="com.javaweb.webbackend02.bean.User">
+    <select id="user_selectAll" resultType="com.javaweb.webbackend02.mybatis.bean.User">
         select * from test.user
     </select>
 
@@ -22,12 +22,12 @@
          （仅适用于 insert 和 update）这会令 MyBatis 使用 JDBC 的 getGeneratedKeys 方法来取出由数据库内部生成的主键（比如：像 MySQL 和 SQL Server 这样的关系型数据库管理系统的自动递增字段），默认值：false。
 
          -->
-    <insert id="user_insert" parameterType="com.javaweb.webbackend02.bean.User">
+    <insert id="user_insert" parameterType="com.javaweb.webbackend02.mybatis.bean.User">
         insert into test.user(username,birthday,sex,address) values (#{username},#{birthday},#{sex},#{address})
     </insert>
 
     <!-- 修改用户 -->
-    <update id="user_update" parameterType="com.javaweb.webbackend02.bean.User">
+    <update id="user_update" parameterType="com.javaweb.webbackend02.mybatis.bean.User">
         update test.user set username = #{username},birthday = #{birthday},sex = #{sex},address = #{address} where id = #{id}
     </update>
 

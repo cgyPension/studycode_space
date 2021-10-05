@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+">
+
+    <!-- 使用注解进行开发时,需要在applicationContext.xml中配置组件扫描,作用是指定哪个包及其子包下的Bean需要进行扫描以便识别使用注解配置的类、字段和方法。 -->
+    <context:component-scan base-package="com.javaweb.webbackend02"/>
+
+    <context:property-placeholder location="classpath:common.properties"/>
+
+    <!--dataSource-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driver" value="${mysql.driver}"></property>
+        <property name="url" value="${prod.mysql.url}"></property>
+        <property name="username" value="${prod.mysql.user}"></property>
+        <property name="password" value="${prod.mysql.password}"></property>
+    </bean>
+    <!--queryRunner-->
+    <bean id="queryRunner" class="org.apache.commons.dbutils.QueryRunner">
+        <constructor-arg name="ds" ref="dataSource"/>
+    </bean>
+
+    <!--AccountDao-->
+    <bean id="accountDao" class="com.javaweb.webbackend02.spring03IOCcrud.dao.impl.AccountDaoImpl">
+        <property name="queryRunner" ref="queryRunner"></property>
+    </bean>
+
+    <!--AccountService-->
+<!--    <bean id="accountService" class="com.javaweb.webbackend02.spring03IOCcrud.service.impl.AccountServiceImpl">
+        <property name="accountDao" ref="accountDao"></property>
+    </bean>-->
+
+</beans>
