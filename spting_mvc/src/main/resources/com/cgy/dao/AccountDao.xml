@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cgy.dao.AccountDao">
+    <!-- 查询所有账户 -->
+    <select id="selectAll" resultType="com.cgy.dao.AccountDao.selectAll">
+        select * from test.account
+    </select>
+
+    <!-- 添加账户 -->
+    <select id="save" parameterType="account">
+        insert into test.account values(null,#{name},#{money})
+    </select>
+
+    <!-- 跟据ID查询账户信息Account findById(Integer id); -->
+</mapper>
